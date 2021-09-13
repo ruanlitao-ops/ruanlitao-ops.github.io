@@ -1,0 +1,573 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="叶尘的技术升级小木屋">
+  <meta name="author" content="叶尘">
+  <meta name="keywords" content="">
+  
+  <title>4、运算符 - 叶尘的技术升级小木屋</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.7.2/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.8.11","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>YECHEN-OPS</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-qrcode"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" target="_self" role="button"
+                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="iconfont icon-books"></i>
+                文档
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" target="_blank" rel="noopener" href="https://hexo.fluid-dev.com/">
+                    
+                    主题博客
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" target="_blank" rel="noopener" href="https://hexo.fluid-dev.com/docs/guide/">
+                    
+                    配置指南
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" target="_blank" rel="noopener" href="https://hexo.fluid-dev.com/docs/icon/">
+                    
+                    图标用法
+                  </a>
+                
+              </div>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="4、运算符">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-author" aria-hidden="true"></i>
+      叶尘
+    </span>
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2021-09-13 22:01" pubdate>
+        星期一, 九月 13日 2021, 10:01 晚上
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      1.1k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      14
+       分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- LeanCloud 统计文章PV -->
+      <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="leancloud-page-views"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">4、运算符</h1>
+            
+            <div class="markdown-body">
+              <h3 id="4-1-算术运算符"><a href="#4-1-算术运算符" class="headerlink" title="4.1 算术运算符"></a>4.1 算术运算符</h3><p><strong>+    求和</strong><br><strong>-     相减</strong><br><strong>*    乘积</strong><br><strong>/     商</strong><br><strong>%   求余数（求模）</strong><br><strong>++  自加1</strong><br><strong>–    自减1</strong></p>
+<h4 id="4-1-1-关于-和-–"><a href="#4-1-1-关于-和-–" class="headerlink" title="4.1.1 关于 ++ 和 –"></a>4.1.1 关于 ++ 和 –</h4><ul>
+<li>写在变量后 —&gt; 先赋值在自增</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">int</span> b = <span class="hljs-number">0</span>;<br>b = a++;<br>System.out.println(<span class="hljs-string">&quot;b = &quot;</span> + b);<span class="hljs-comment">// b = 1</span><br>System.out.println(<span class="hljs-string">&quot;a = &quot;</span> + a);<span class="hljs-comment">// a = 2</span><br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>写在变量前 —&gt; 先自增再赋值</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">int</span> a = <span class="hljs-number">1</span>;<br><span class="hljs-keyword">int</span> b = <span class="hljs-number">0</span>;<br>b = ++a;<br>System.out.println(<span class="hljs-string">&quot;b = &quot;</span> + b);<span class="hljs-comment">// b = 2</span><br>System.out.println(<span class="hljs-string">&quot;a = &quot;</span> + a);<span class="hljs-comment">// a = 2</span><br></code></pre></td></tr></table></figure>
+
+
+
+<h3 id="4-2-关系运算符"><a href="#4-2-关系运算符" class="headerlink" title="4.2 关系运算符"></a>4.2 关系运算符</h3><p><strong>&gt;        大于</strong><br><strong>&gt;=     大于等于</strong><br><strong>&lt;        小于</strong><br><strong>&lt;=     小于等于</strong><br><strong>==     关系运算符，判断是否相等</strong><br><strong>!=      关系运算符，判读是否不相等</strong></p>
+<p><strong>所有的关系运算符的运算结果都是布尔类型，不是true就是false，不可能是其他值。</strong></p>
+<h3 id="4-3-逻辑运算符"><a href="#4-3-逻辑运算符" class="headerlink" title="4.3 逻辑运算符"></a>4.3 逻辑运算符</h3><p><strong>&amp;        逻辑与（可以翻译成并且）</strong><br><strong>|         逻辑或（可以翻译成或者）</strong><br><strong>!          逻辑非（取反）</strong><br><strong>&amp;&amp;      短路与</strong><br><strong>||       短路或</strong></p>
+<p><strong>逻辑运算符两边要求都是布尔类型，并且最终的运算结果也是布尔类型。这是逻辑运算符的特点。</strong></p>
+<h4 id="4-3-1-关于短路与-amp-amp-，短路或"><a href="#4-3-1-关于短路与-amp-amp-，短路或" class="headerlink" title="4.3.1 关于短路与 &amp;&amp;，短路或 ||"></a>4.3.1 关于短路与 &amp;&amp;，短路或 ||</h4><ul>
+<li><p>短路与&amp;&amp; 和 逻辑与 &amp;有什么区别：</p>
+<ul>
+<li>首先这两个运算符的运算结果没有任何区别，完全相同。</li>
+<li>只不过“短路与&amp;&amp;”会发生短路现象。</li>
+</ul>
+</li>
+<li><p>什么是短路现象呢？</p>
+<ul>
+<li>右边表达式不执行，这种现象叫做短路现象。</li>
+</ul>
+</li>
+<li><p>什么时候使用&amp;&amp;，什么时候使用&amp; ？</p>
+<ul>
+<li>从效率方面来说，&amp;&amp;比&amp;的效率高一些。因为逻辑与&amp;不管第一个表达式结果是什么，第二个表达式一定会执行。</li>
+<li>以后的开发中，短路与&amp;&amp;和逻辑与还是需要同时并存的。大部分情况下都建议使用短路与&amp;&amp;<br>只有当既需要左边表达式执行，又需要右边表达式执行的时候，才会选择逻辑与&amp;。</li>
+</ul>
+</li>
+<li><p>什么时候发生短路或现象？</p>
+<ul>
+<li>当左边的表达式结果是true的时候，右边的表达式不需要执行，此时会短路。</li>
+</ul>
+</li>
+</ul>
+<h3 id="4-4-赋值运算符"><a href="#4-4-赋值运算符" class="headerlink" title="4.4 赋值运算符"></a>4.4 赋值运算符</h3><p>赋值运算符包括“基本赋值运算符”和“扩展赋值运算符”：基本的、扩展的。</p>
+<p>基本赋值运算符：=</p>
+<p>扩展赋值运算符：</p>
+<p>+=</p>
+<p>*=<br>/=<br>%=</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">int</span> a = <span class="hljs-number">10</span>;<br>a += <span class="hljs-number">10</span>;<br><span class="hljs-comment">// 类似于</span><br>a = a + <span class="hljs-number">10</span>;<br></code></pre></td></tr></table></figure>
+
+
+
+<h3 id="4-5-条件运算符：（三目运算符）"><a href="#4-5-条件运算符：（三目运算符）" class="headerlink" title="4.5 条件运算符：（三目运算符）"></a>4.5 条件运算符：（三目运算符）</h3><ul>
+<li>语法格式:<ul>
+<li>布尔表达式 ? 表达式1 : 表达式2</li>
+</ul>
+</li>
+<li>执行原理是什么：<ul>
+<li>布尔表达式的结果为true时，表达式1的执行结果作为整个表达式的结果。</li>
+<li>布尔表达式的结果为false时，表达式2的执行结果作为整个表达式的结果。</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">boolean</span> sex = <span class="hljs-keyword">true</span>;<br><span class="hljs-keyword">char</span> x = sex ? <span class="hljs-string">&#x27;男&#x27;</span> : <span class="hljs-string">&#x27;女&#x27;</span>;<br>System.out.println(x);<span class="hljs-comment">// 男</span><br></code></pre></td></tr></table></figure>
+
+
+
+<h3 id="4-6-运算符"><a href="#4-6-运算符" class="headerlink" title="4.6 + 运算符"></a>4.6 + 运算符</h3><ul>
+<li>运算符在java语言中有两个作用:<ol>
+<li>求和</li>
+<li>字符串拼接</li>
+</ol>
+</li>
+<li>什么时候求和？什么时候进行字符串的拼接呢？<ul>
+<li>当 + 运算符<strong>两边都是数字类型</strong>的时候，<strong>求和</strong>。</li>
+<li>当 + 运算符两边的“<strong>任意一边”是字符串类型</strong>，那么这个+会进行字符串<strong>拼接</strong>操作。</li>
+</ul>
+</li>
+<li>字符串拼接完之后的结果还是一个字符串</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">A</span> </span>&#123;<br>	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span></span>&#123;<br>		<span class="hljs-keyword">int</span> a = <span class="hljs-number">100</span>;<br>		<span class="hljs-keyword">int</span> b = <span class="hljs-number">200</span>;<br>		<span class="hljs-keyword">int</span> c = a + b;<br>		System.out.println(<span class="hljs-string">&quot;a = &quot;</span> + a);<span class="hljs-comment">// 字符串：&quot;a  = 100&quot;</span><br>		System.out.println(a + b);<span class="hljs-comment">// 数字：300</span><br>		System.out.println(a + b + <span class="hljs-string">&quot;110&quot;</span>); <span class="hljs-comment">// 字符串：&quot;300110&quot;</span><br>		System.out.println(a + (b + <span class="hljs-string">&quot;110&quot;</span>));<span class="hljs-comment">// 字符串：&quot;100200110&quot;</span><br>		System.out.println(<span class="hljs-string">&quot;100+200=300&quot;</span>);<span class="hljs-comment">// 字符串：&quot;100+200=300&quot;</span><br>		System.out.println(a + <span class="hljs-string">&quot;+&quot;</span> + b + <span class="hljs-string">&quot;=&quot;</span> + c);<span class="hljs-comment">// 字符串：&quot;100+200=300&quot;</span><br>		System.out.println(a + <span class="hljs-string">&quot;+&quot;</span> + b + <span class="hljs-string">&quot;=&quot;</span> + a + b);<span class="hljs-comment">// 字符串：&quot;100+200=100200&quot;</span><br>		System.out.println(a + <span class="hljs-string">&quot;+&quot;</span> + b + <span class="hljs-string">&quot;=&quot;</span> + (a + b));<span class="hljs-comment">// 字符串：&quot;100+200=300&quot;</span><br>	&#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+<h3 id="4-7-在java中接收键盘的输入"><a href="#4-7-在java中接收键盘的输入" class="headerlink" title="4.7 在java中接收键盘的输入"></a>4.7 在java中接收键盘的输入</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// 创建一个键盘扫描器对象,对象名为 s</span><br>java.util.Scanner s = <span class="hljs-keyword">new</span> java.util.Scanner(System.in);<br><span class="hljs-comment">// 接受一个整数</span><br><span class="hljs-comment">// 代码执行到这里的时候，会暂停下来等待用户的输入，用户可以从键盘上输入一个整数，然后回车，回车之</span><br><span class="hljs-comment">// 后,num就被赋上值了</span><br><span class="hljs-keyword">int</span> num = s.nextInt();<br><span class="hljs-comment">// 接受一个字符串</span><br>String str = s.next();<br></code></pre></td></tr></table></figure>
+
+
+
+<h3 id="4-8-有一个问题要提出"><a href="#4-8-有一个问题要提出" class="headerlink" title="4.8 有一个问题要提出"></a>4.8 有一个问题要提出</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">int</span> i = <span class="hljs-number">10</span>;<br>i = i++;<br>System.out.println(<span class="hljs-string">&quot;i = &quot;</span> + i);<br></code></pre></td></tr></table></figure>
+
+<p>以上代码输出结果为：<code>i =  10</code></p>
+<p>原因是：<code>i = i++</code> 对应如下代码</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">int</span> tmep = k;<br>k++;<br>k = temp;<br></code></pre></td></tr></table></figure>
+
+
+
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/Java-%E5%9F%BA%E7%A1%80/">Java 基础</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/Java-%E5%9F%BA%E7%A1%80/">Java 基础</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2021/09/13/Java%E5%9F%BA%E7%A1%80-2021-09-13-%E6%8E%A7%E5%88%B6%E8%AF%AD%E5%8F%A5/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">5、控制语句</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/09/13/Java%E5%9F%BA%E7%A1%80-2021-09-13-%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/">
+                        <span class="hidden-mobile">3、数据类型</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.3/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.1/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js" ></script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

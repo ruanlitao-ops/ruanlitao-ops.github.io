@@ -1,0 +1,532 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="叶尘的技术升级小木屋">
+  <meta name="author" content="叶尘">
+  <meta name="keywords" content="">
+  
+  <title>13、super关键字 - 叶尘的技术升级小木屋</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.7.2/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.8.11","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>YECHEN-OPS</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-qrcode"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" target="_self" role="button"
+                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="iconfont icon-books"></i>
+                文档
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" target="_blank" rel="noopener" href="https://hexo.fluid-dev.com/">
+                    
+                    主题博客
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" target="_blank" rel="noopener" href="https://hexo.fluid-dev.com/docs/guide/">
+                    
+                    配置指南
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" target="_blank" rel="noopener" href="https://hexo.fluid-dev.com/docs/icon/">
+                    
+                    图标用法
+                  </a>
+                
+              </div>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="13、super关键字">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-author" aria-hidden="true"></i>
+      叶尘
+    </span>
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2021-09-13 22:12" pubdate>
+        星期一, 九月 13日 2021, 10:12 晚上
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      1.3k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      17
+       分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- LeanCloud 统计文章PV -->
+      <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="leancloud-page-views"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">13、super关键字</h1>
+            
+            <div class="markdown-body">
+              <h3 id="13-1-super介绍"><a href="#13-1-super介绍" class="headerlink" title="13.1 super介绍"></a>13.1 super介绍</h3><ol>
+<li><strong>super能出现在实例方法和构造方法中。</strong></li>
+<li><strong>super的语法是：“super.”、“super()”</strong></li>
+<li><strong>super不能使用在静态方法中。</strong></li>
+<li><strong>super. 大部分情况下是可以省略的。</strong></li>
+<li><strong>[super.什么时候不能省略呢](###13.4 super. 什么时候不能省略)</strong></li>
+<li>==super() 只能出现在构造方法第一行，通过当前的构造方法去调用“父类”中的构造方法，目的是：创建子类对象的时候，先初始化父类型特征。==</li>
+<li>super 不是引用。super也不保存内存地址，super也不指向任何对象。==super 只是代表当前对象内部的那一块父类型的特征==。</li>
+</ol>
+<ul>
+<li><p>重要的结论：</p>
+<ul>
+<li><p>==当一个构造方法第一行：既没有this()又没有super()的话，默认会有一个super()==; 表示通过当前子类的构造方法调用父类的无参数构造方法。<strong>所以必须保证父类的无参数构造方法是存在的。</strong></p>
+</li>
+<li><p><strong>this()和super() 不能共存，它们都是只能出现在构造方法第一行。</strong></p>
+</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">A</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123;<br>        C c = <span class="hljs-keyword">new</span> C();<br>        <span class="hljs-comment">/*</span><br><span class="hljs-comment">        	输出：</span><br><span class="hljs-comment">        		B类的有参数构造方法！</span><br><span class="hljs-comment">				C类的无参数构造方法！</span><br><span class="hljs-comment">        */</span><br>    &#125;<br>&#125;<br><br><span class="hljs-comment">// 父类</span><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">B</span> </span>&#123;<br>	String name;<br>	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">B</span><span class="hljs-params">()</span> </span>&#123;<br>		System.out.println(<span class="hljs-string">&quot;B类的无参数构造方法！&quot;</span>);<br>	&#125;<br>	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">B</span><span class="hljs-params">(String name)</span> </span>&#123;<br>		System.out.println(<span class="hljs-string">&quot;B类的有参数构造方法！&quot;</span>);<br>	&#125;<br>&#125;<br><br><span class="hljs-comment">// 子类</span><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">C</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">B</span> </span>&#123;<br>    <span class="hljs-comment">/*</span><br><span class="hljs-comment">	public C() &#123;</span><br><span class="hljs-comment">		// 其实在这里还有一句 super()，调用了B类的无参构造方法</span><br><span class="hljs-comment">		System.out.println(&quot;C类的无参数构造方法！&quot;);</span><br><span class="hljs-comment">	&#125;</span><br><span class="hljs-comment">	*/</span><br>    <br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">C</span><span class="hljs-params">()</span> </span>&#123;<br>		<span class="hljs-comment">// 也可以自己写 super(&quot;abc&quot;); 表示调用了B类的有参构造方法</span><br>        <span class="hljs-keyword">super</span>(<span class="hljs-string">&quot;abc&quot;</span>);<br>		System.out.println(<span class="hljs-string">&quot;C类的无参数构造方法！&quot;</span>);<br>	&#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>this 和 super 混合</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">A</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123;<br>        <span class="hljs-keyword">new</span> C();<br>        <span class="hljs-comment">/*</span><br><span class="hljs-comment">        	输出：</span><br><span class="hljs-comment">        		B类的无参数构造方法！</span><br><span class="hljs-comment">        		C类的有参数构造方法！</span><br><span class="hljs-comment">        		C类的无参数构造方法！</span><br><span class="hljs-comment">         */</span><br>    &#125;<br>&#125;<br><br><span class="hljs-comment">// 父类</span><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">B</span> </span>&#123;<br>	String name;<br>	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">B</span><span class="hljs-params">()</span> </span>&#123;<br>		System.out.println(<span class="hljs-string">&quot;B类的无参数构造方法！&quot;</span>);<br>	&#125;<br>	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">B</span><span class="hljs-params">(String name)</span> </span>&#123;<br>		System.out.println(<span class="hljs-string">&quot;B类的有参数构造方法！&quot;</span>);<br>	&#125;<br>&#125;<br><br><span class="hljs-comment">// 子类</span><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">C</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">B</span> </span>&#123;<br>	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">C</span><span class="hljs-params">()</span> </span>&#123;<br>        <span class="hljs-comment">// 因为this和super不能同时出现，这里有了this，super()就没有了，也不能自己写上super()</span><br>        <span class="hljs-keyword">this</span>(<span class="hljs-string">&quot;abc&quot;</span>);<br>		System.out.println(<span class="hljs-string">&quot;C类的无参数构造方法！&quot;</span>);<br>	&#125;<br><br>	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">C</span><span class="hljs-params">(String name)</span> </span>&#123;<br>        <span class="hljs-comment">// 这里其实还有个 super()，来调用父类的无参构造方法</span><br>		System.out.println(<span class="hljs-string">&quot;C类的有参数构造方法！&quot;</span>);<br>	&#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+<h3 id="13-2-super-实参-的用法"><a href="#13-2-super-实参-的用法" class="headerlink" title="13.2 super(实参) 的用法"></a>13.2 super(实参) 的用法</h3><ul>
+<li><strong>当在子类的构造方法中需要给从父类继承下来的属性赋值时，由于属性私有化，子类不能直接访问该属性，此时可以通过 super(实参) 来调用父类的构造方法，给属性赋值。</strong></li>
+<li>==super(实参) 的作用是：初始化当前对象的父类型特征==。并不是创建新对象。实际上对象只创建了1个。</li>
+<li>==super 关键字代表的就是“当前对象”的那部分父类型特征==</li>
+</ul>
+<p>如：以下程序中 64行代码 就可以通过 <code>super(actno, balance)</code> 调用父类构造方法给父类中的属性赋值</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">SuperTest03</span></span>&#123;<br>	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span></span>&#123;<br><br>		CreditAccount ca1 = <span class="hljs-keyword">new</span> CreditAccount();<br>		System.out.println(ca1.getActno() + <span class="hljs-string">&quot;,&quot;</span> + ca1.getBalance() + <span class="hljs-string">&quot;,&quot;</span> + ca1.getCredit());<br><br>		CreditAccount ca2 = <span class="hljs-keyword">new</span> CreditAccount(<span class="hljs-string">&quot;1111&quot;</span>, <span class="hljs-number">10000.0</span>, <span class="hljs-number">0.999</span>);<br>		System.out.println(ca2.getActno() + <span class="hljs-string">&quot;,&quot;</span> + ca2.getBalance() + <span class="hljs-string">&quot;,&quot;</span> + ca2.getCredit());<br><br>	&#125;<br>&#125;<br><br><span class="hljs-comment">// 账户类，父类</span><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Account</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Object</span></span>&#123;<br>	<span class="hljs-comment">// 属性</span><br>	<span class="hljs-keyword">private</span> String actno;<br>	<span class="hljs-keyword">private</span> <span class="hljs-keyword">double</span> balance;<br><br>	<span class="hljs-comment">// 构造方法</span><br>	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">Account</span><span class="hljs-params">()</span></span>&#123;<br>		<span class="hljs-comment">//super();</span><br>		<span class="hljs-comment">//this.actno = null;</span><br>		<span class="hljs-comment">//this.balance = 0.0;</span><br>	&#125;<br>	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">Account</span><span class="hljs-params">(String actno, <span class="hljs-keyword">double</span> balance)</span></span>&#123;<br>		<span class="hljs-comment">// super();</span><br>		<span class="hljs-keyword">this</span>.actno = actno;<br>		<span class="hljs-keyword">this</span>.balance = balance;<br>	&#125;<br><br>	<span class="hljs-comment">// setter and getter</span><br>	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setActno</span><span class="hljs-params">(String actno)</span></span>&#123;<br>		<span class="hljs-keyword">this</span>.actno = actno;<br>	&#125;<br>	<span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">getActno</span><span class="hljs-params">()</span></span>&#123;<br>		<span class="hljs-keyword">return</span> actno;<br>	&#125;<br>	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setBalance</span><span class="hljs-params">(<span class="hljs-keyword">double</span> balance)</span></span>&#123;<br>		<span class="hljs-keyword">this</span>.balance = balance;<br>	&#125;<br>	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">double</span> <span class="hljs-title">getBalance</span><span class="hljs-params">()</span></span>&#123;<br>		<span class="hljs-keyword">return</span> balance;<br>	&#125;<br>&#125;<br><br><span class="hljs-comment">// 信用账户</span><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">CreditAccount</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Account</span></span>&#123;<br><br>	<span class="hljs-comment">// 属性：信誉度（诚信值）</span><br>	<span class="hljs-comment">// 子类特有的一个特征，父类没有。</span><br>	<span class="hljs-keyword">private</span> <span class="hljs-keyword">double</span> credit;<br><br>	<span class="hljs-comment">// 构造方法</span><br>	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">CreditAccount</span><span class="hljs-params">(String actno, <span class="hljs-keyword">double</span> balance, <span class="hljs-keyword">double</span> credit)</span></span>&#123;<br><br>		<span class="hljs-comment">// 私有的属性，只能在本类中访问。</span><br>		<span class="hljs-comment">/*</span><br><span class="hljs-comment">		this.actno = actno;</span><br><span class="hljs-comment">		this.balance = balance;</span><br><span class="hljs-comment">		*/</span><br><br>		<span class="hljs-comment">// 以上两行代码在恰当的位置，正好可以使用：super(actno, balance);</span><br>		<span class="hljs-comment">// 通过子类的构造方法调用父类的构造方法。</span><br>		<span class="hljs-keyword">super</span>(actno, balance);<br>		<span class="hljs-keyword">this</span>.credit = credit;<br>	&#125;<br><br>	<span class="hljs-comment">// 提供无参数的构造方法</span><br>	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">CreditAccount</span><span class="hljs-params">()</span></span>&#123;<br>		<span class="hljs-comment">//super();</span><br>		<span class="hljs-comment">//this.credit = 0.0;</span><br>	&#125;<br><br>	<span class="hljs-comment">// setter and getter方法</span><br>	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setCredit</span><span class="hljs-params">(<span class="hljs-keyword">double</span> credit)</span></span>&#123;<br>		<span class="hljs-keyword">this</span>.credit = credit;<br>	&#125;<br>	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">double</span> <span class="hljs-title">getCredit</span><span class="hljs-params">()</span></span>&#123;<br>		<span class="hljs-keyword">return</span> credit;<br>	&#125;	<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+<h3 id="13-3-内存图描述-super"><a href="#13-3-内存图描述-super" class="headerlink" title="13.3 内存图描述 super"></a>13.3 内存图描述 super</h3><p><img src="https://img-blog.csdnimg.cn/20210207194752129.png" srcset="/img/loading.gif" lazyload alt="image-20210207194723069"></p>
+<h3 id="13-4-super-什么时候不能省略"><a href="#13-4-super-什么时候不能省略" class="headerlink" title="13.4 super. 什么时候不能省略"></a>13.4 super. 什么时候不能省略</h3><ul>
+<li>如果父类和子类中有同名的特征（属性和方法），并且想要在子类中访问父类的特征（属性和方法），super. 就不能省略；</li>
+<li><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1Rx411876f?p=472">视频讲解</a></li>
+</ul>
+<h3 id="13-5-super总结"><a href="#13-5-super总结" class="headerlink" title="13.5 super总结"></a>13.5 super总结</h3><ul>
+<li><strong>super.属性名    【访问父类的属性】</strong></li>
+<li><strong>super.方法名(实参) 【访问父类的方法】</strong></li>
+<li><strong>super(实参)  【调用父类的构造方法】</strong></li>
+<li>==通过 super. 访问属性或方法的时候：==<ul>
+<li>==如果在子类中没有和父类同名的属性或方法，效果同 this. 相同，可以省略 super. ；==</li>
+<li>==如果有同名的属性或方法，此时不能省略super. ，效果与 this. 不同==</li>
+</ul>
+</li>
+</ul>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/Java-%E5%9F%BA%E7%A1%80/">Java 基础</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/Java-%E5%9F%BA%E7%A1%80/">Java 基础</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2021/09/13/Java%E5%9F%BA%E7%A1%80-2021-09-13-%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">14、面向对象</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/09/13/Java%E5%9F%BA%E7%A1%80-2021-09-13-%E6%96%B9%E6%B3%95%E8%A6%86%E7%9B%96%EF%BC%88Override%EF%BC%89/">
+                        <span class="hidden-mobile">11、方法覆盖（Override）</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.3/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.1/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js" ></script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

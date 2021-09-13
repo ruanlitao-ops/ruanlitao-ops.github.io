@@ -1,0 +1,733 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="叶尘的技术升级小木屋">
+  <meta name="author" content="叶尘">
+  <meta name="keywords" content="">
+  
+  <title>IDEA 原生常用快捷键 - 叶尘的技术升级小木屋</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.7.2/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.8.11","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>YECHEN-OPS</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-qrcode"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" target="_self" role="button"
+                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="iconfont icon-books"></i>
+                文档
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" target="_blank" rel="noopener" href="https://hexo.fluid-dev.com/">
+                    
+                    主题博客
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" target="_blank" rel="noopener" href="https://hexo.fluid-dev.com/docs/guide/">
+                    
+                    配置指南
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" target="_blank" rel="noopener" href="https://hexo.fluid-dev.com/docs/icon/">
+                    
+                    图标用法
+                  </a>
+                
+              </div>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="IDEA 原生常用快捷键">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-author" aria-hidden="true"></i>
+      叶尘
+    </span>
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2021-09-13 20:49" pubdate>
+        星期一, 九月 13日 2021, 8:49 晚上
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      605 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      8
+       分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- LeanCloud 统计文章PV -->
+      <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="leancloud-page-views"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">IDEA 原生常用快捷键</h1>
+            
+            <div class="markdown-body">
+              <table>
+<thead>
+<tr>
+<th align="center"></th>
+<th align="center">功能</th>
+<th align="center">快捷键</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">1</td>
+<td align="center"><strong>执行（run）</strong></td>
+<td align="center">shift + F10</td>
+</tr>
+<tr>
+<td align="center">2</td>
+<td align="center"><strong>提示补全 (Second Basic Completion)</strong></td>
+<td align="center">Ctrl + Alt + 空格</td>
+</tr>
+<tr>
+<td align="center">3</td>
+<td align="center"><strong>单行注释（Comment with Line Comment）</strong></td>
+<td align="center">Ctrl + /</td>
+</tr>
+<tr>
+<td align="center">4</td>
+<td align="center"><strong>多行注释（Comment with Block Comment）</strong></td>
+<td align="center">Ctrl + Shift + /</td>
+</tr>
+<tr>
+<td align="center">5</td>
+<td align="center"><strong>向下复制一行 (Duplicate Line or Selection)</strong></td>
+<td align="center">Ctrl + D</td>
+</tr>
+<tr>
+<td align="center">6</td>
+<td align="center"><strong>删除一行或选中行（Delete Line）</strong></td>
+<td align="center">Crtl + Y</td>
+</tr>
+<tr>
+<td align="center">7</td>
+<td align="center"><strong>向下移动行(Move Statement Down)</strong></td>
+<td align="center">Ctrl + Shift + 向下箭头</td>
+</tr>
+<tr>
+<td align="center">8</td>
+<td align="center"><strong>向上移动行(Move Statement Up)</strong></td>
+<td align="center">Ctrl + Shift + 向上箭头</td>
+</tr>
+<tr>
+<td align="center">9</td>
+<td align="center"><strong>向下开始新的一行(Start New Line)</strong></td>
+<td align="center">Shift + Enter</td>
+</tr>
+<tr>
+<td align="center">10</td>
+<td align="center"><strong>向上开始新的一行 (Start New Line Before Current)</strong></td>
+<td align="center">Ctrl + Alt + Enter</td>
+</tr>
+<tr>
+<td align="center">11</td>
+<td align="center"><strong>如何查看源码 (class)</strong></td>
+<td align="center">Ctrl + 选中指定的结构 或 Ctrl + N 搜索</td>
+</tr>
+<tr>
+<td align="center">12</td>
+<td align="center"><strong>万能解错 / 生成返回值变量</strong></td>
+<td align="center">Alt + Enter</td>
+</tr>
+<tr>
+<td align="center">13</td>
+<td align="center"><strong>退回到前一个编辑的页面（Back）</strong></td>
+<td align="center">Ctrl + Alt + 向左箭头</td>
+</tr>
+<tr>
+<td align="center">14</td>
+<td align="center"><strong>进入到下一个编辑的页面(针对于上条) (forward)</strong></td>
+<td align="center">Ctrl + Alt + 向右箭头</td>
+</tr>
+<tr>
+<td align="center">15</td>
+<td align="center"><strong>查看继承关系(Type Hierarchy)</strong></td>
+<td align="center">Ctrl + H</td>
+</tr>
+<tr>
+<td align="center">16</td>
+<td align="center"><strong>格式化代码(Reformat Code)</strong></td>
+<td align="center">Ctrl + Alt + L</td>
+</tr>
+<tr>
+<td align="center">17</td>
+<td align="center"><strong>提示方法参数类型(Parameter Info)</strong></td>
+<td align="center">Ctrl + P</td>
+</tr>
+<tr>
+<td align="center">18</td>
+<td align="center"><strong>复制代码</strong></td>
+<td align="center">Ctrl + C</td>
+</tr>
+<tr>
+<td align="center">19</td>
+<td align="center"><strong>撤销</strong></td>
+<td align="center">Ctrl + Z</td>
+</tr>
+<tr>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">21</td>
+<td align="center"><strong>剪切</strong></td>
+<td align="center">Ctrl + X</td>
+</tr>
+<tr>
+<td align="center">22</td>
+<td align="center"><strong>粘贴</strong></td>
+<td align="center">Ctrl + V</td>
+</tr>
+<tr>
+<td align="center">23</td>
+<td align="center"><strong>保存</strong></td>
+<td align="center">Ctrl + S</td>
+</tr>
+<tr>
+<td align="center">24</td>
+<td align="center"><strong>全选</strong></td>
+<td align="center">Ctrl + A</td>
+</tr>
+<tr>
+<td align="center">25</td>
+<td align="center"><strong>选中行数，整体向后移</strong></td>
+<td align="center">Tab</td>
+</tr>
+<tr>
+<td align="center">26</td>
+<td align="center"><strong>选中行数，整体向前移</strong></td>
+<td align="center">Shift + Tab</td>
+</tr>
+<tr>
+<td align="center">27</td>
+<td align="center"><strong>查看类的结构（File Structure）</strong></td>
+<td align="center">Ctrl + F12</td>
+</tr>
+<tr>
+<td align="center">28</td>
+<td align="center"><strong>重构：修改变量名与方法名（Rename）</strong></td>
+<td align="center">Shift + F6</td>
+</tr>
+<tr>
+<td align="center">29</td>
+<td align="center"><strong>大写转小写/小写转大写（Toggle Case）</strong></td>
+<td align="center">Ctrl + Shift + U</td>
+</tr>
+<tr>
+<td align="center">30</td>
+<td align="center"><strong>生成构造器/get/set/toString</strong></td>
+<td align="center">Alt + Insert</td>
+</tr>
+<tr>
+<td align="center">31</td>
+<td align="center"><strong>查看文档说明(Quick Documentation)</strong></td>
+<td align="center">Ctlrl + Q</td>
+</tr>
+<tr>
+<td align="center">32</td>
+<td align="center"><strong>收起所有的方法(Collapse All)</strong></td>
+<td align="center">Ctrl + Shift + 减号</td>
+</tr>
+<tr>
+<td align="center">33</td>
+<td align="center"><strong>打开所有方法(Expand All)</strong></td>
+<td align="center">Ctrl + Shift + 加号</td>
+</tr>
+<tr>
+<td align="center">34</td>
+<td align="center"><strong>打开代码所在硬盘文件夹(show in explorer)</strong></td>
+<td align="center">需要自己设置</td>
+</tr>
+<tr>
+<td align="center">35</td>
+<td align="center"><strong>生成 try-catch 等(Surround With)</strong></td>
+<td align="center">Ctrl + Alt + T</td>
+</tr>
+<tr>
+<td align="center">36</td>
+<td align="center"><strong>局部变量抽取为成员变量(Introduce Field)</strong></td>
+<td align="center">Ctrl + Alt + F</td>
+</tr>
+<tr>
+<td align="center">37</td>
+<td align="center"><strong>查找（全局）</strong></td>
+<td align="center">Ctrl + F</td>
+</tr>
+<tr>
+<td align="center">38</td>
+<td align="center"><strong>查找文件</strong></td>
+<td align="center">double Shift</td>
+</tr>
+<tr>
+<td align="center">39</td>
+<td align="center"><strong>查看类的继承结构图(Show UML Diagram)</strong></td>
+<td align="center">Ctrl + Alt + Shift + U</td>
+</tr>
+<tr>
+<td align="center">40</td>
+<td align="center"><strong>查看方法的多层重写结构(Method Hierarchy)</strong></td>
+<td align="center">Ctrl + Shift + H</td>
+</tr>
+<tr>
+<td align="center">41</td>
+<td align="center"><strong>添加到收藏(Add To Favorites）</strong></td>
+<td align="center">需要自己设置</td>
+</tr>
+<tr>
+<td align="center">42</td>
+<td align="center"><strong>抽取方法(Extract Method)</strong></td>
+<td align="center">Ctrl + Alt + M</td>
+</tr>
+<tr>
+<td align="center">43</td>
+<td align="center"><strong>打开最近修改的文件(Recently Files)</strong></td>
+<td align="center">Ctrl + E</td>
+</tr>
+<tr>
+<td align="center">44</td>
+<td align="center"><strong>关闭当前打开的代码栏(Close)</strong></td>
+<td align="center">Ctrl + F4</td>
+</tr>
+<tr>
+<td align="center">45</td>
+<td align="center"><strong>关闭打开的所有代码栏(close all)</strong></td>
+<td align="center">需要自己设置</td>
+</tr>
+<tr>
+<td align="center">46</td>
+<td align="center"><strong>快速搜索类中的错误(next highlighted error)</strong></td>
+<td align="center">F2</td>
+</tr>
+<tr>
+<td align="center">47</td>
+<td align="center"><strong>选择要粘贴的内容(Show in Explorer)</strong></td>
+<td align="center">Ctrl + Alt + Shift + E</td>
+</tr>
+<tr>
+<td align="center">48</td>
+<td align="center"><strong>查找方法在哪里被调用(Call Hierarchy)</strong></td>
+<td align="center">Ctrl + Alt + H</td>
+</tr>
+<tr>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+</tbody></table>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/JavaWeb/">JavaWeb</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/JavaWeb/">JavaWeb</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2021/09/13/JavaWeb-2021-09-13-JavaWeb/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">JavaWeb</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/09/13/JavaWeb-2021-09-13-Http%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE%E5%8C%85/">
+                        <span class="hidden-mobile">Http网络协议包</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.3/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.1/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js" ></script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

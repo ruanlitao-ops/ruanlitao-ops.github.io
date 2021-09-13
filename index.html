@@ -210,30 +210,27 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
-        <a href="/2021/09/13/Java-2021-09-13-%E5%8F%98%E9%87%8F/" target="_blank">
-          变量
+        <a href="/2021/09/13/Java%E5%9F%BA%E7%A1%80-2021-09-13-%E6%B3%A8%E8%A7%A3%EF%BC%88Annotation%EF%BC%89/" target="_blank">
+          22、注解（Annotation）
         </a>
       </h1>
 
       <p class="index-excerpt">
-        <a href="/2021/09/13/Java-2021-09-13-%E5%8F%98%E9%87%8F/" target="_blank">
+        <a href="/2021/09/13/Java%E5%9F%BA%E7%A1%80-2021-09-13-%E6%B3%A8%E8%A7%A3%EF%BC%88Annotation%EF%BC%89/" target="_blank">
           
           
             
           
-          软件在处理数据之前需要能够表示数据，在java代码中怎么去表示数据呢？在java中有这样的一个概念：字面量。
-在java语言中“数据”被称为“字面量”。
-2.1 字面量可以分为很多种类：
-整数型字面量
-浮点型字面量
-布尔型字面量
-字符型字面量
-字符串型字面量
+          22.1 注解概述注解，或者叫做注释类型，英文单词是：Annotation
+注解Annotation是一种引用数据类型。编译之后也是生成xxx.class文件。
+怎么自定义注解呢？语法格式？
+123[修饰符列表] @interface 注解类型名&#123;&#125;
 
-2.2 什么是变量:
-变量其实就是内存当中存储数据的最基本的单元
-变量有不同的数据类型，如int，float，double……
-不同的数据
+注解怎么使用，用在什么地方？
+
+注解使用时的语法格式是：**@注解类型名**
+
+注解可以出现在类上、属性上、方法上、变量上等…
         </a>
       </p>
 
@@ -241,7 +238,7 @@
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2021-09-13 21:51" pubdate>
+            <time datetime="2021-09-13 22:27" pubdate>
               2021-09-13
             </time>
           </div>
@@ -272,26 +269,31 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
-        <a href="/2021/09/13/Java-2021-09-13-%E6%A0%87%E8%AF%86%E7%AC%A6%E4%B8%8E%E5%85%B3%E9%94%AE%E5%AD%97/" target="_blank">
-          标识符与关键字
+        <a href="/2021/09/13/Java%E5%9F%BA%E7%A1%80-2021-09-13-%E5%8F%8D%E5%B0%84%EF%BC%88Reflect%EF%BC%89/" target="_blank">
+          21、反射（Reflect）
         </a>
       </h1>
 
       <p class="index-excerpt">
-        <a href="/2021/09/13/Java-2021-09-13-%E6%A0%87%E8%AF%86%E7%AC%A6%E4%B8%8E%E5%85%B3%E9%94%AE%E5%AD%97/" target="_blank">
+        <a href="/2021/09/13/Java%E5%9F%BA%E7%A1%80-2021-09-13-%E5%8F%8D%E5%B0%84%EF%BC%88Reflect%EF%BC%89/" target="_blank">
           
           
             
           
-          1.1  标识符==标识符就是程序员自己有权利自己去改的单词（黑色高亮字体）==
-1.1.1 标识符的命名规则（是语法，不遵守会报错，必须遵守）
-标识符只能由数字、字母（包括中文）、下划线、美元符号组成，不能含有其他符号。
-标识符不能以数字开头。
-关键字不能做标识符，如public 、class、static。
-标识符是严格个规定大小写的（但类名最好不同）。
-标识符理论上是没有长度限制的。
+          21.1 反射的基本概念反射机制有什么用：
 
-1.
+通过java语言中的反射机制可以操作字节码文件。
+优点类似于黑客。（可以读和修改字节码文件。）
+通过反射机制可以操作代码片段。（class文件。）
+
+反射机制的相关类在哪个包下：
+
+java.lang.reflect.*;
+
+反射机制相关的重要的类有哪些：
+
+java.lang.Class：代表整个字节码，代表一个类型，代表整个类。
+java.lang
         </a>
       </p>
 
@@ -299,7 +301,7 @@
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2021-09-13 21:49" pubdate>
+            <time datetime="2021-09-13 22:26" pubdate>
               2021-09-13
             </time>
           </div>
@@ -330,28 +332,27 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
-        <a href="/2021/09/13/Servlet-%E8%A7%84%E8%8C%83/" target="_blank">
-          Servlet 规范
+        <a href="/2021/09/13/Java%E5%9F%BA%E7%A1%80-2021-09-13-%E5%A4%9A%E7%BA%BF%E7%A8%8B/" target="_blank">
+          20、多线程
         </a>
       </h1>
 
       <p class="index-excerpt">
-        <a href="/2021/09/13/Servlet-%E8%A7%84%E8%8C%83/" target="_blank">
+        <a href="/2021/09/13/Java%E5%9F%BA%E7%A1%80-2021-09-13-%E5%A4%9A%E7%BA%BF%E7%A8%8B/" target="_blank">
           
           
             
           
-          一、Servlet 规范介绍：
-Servlet 规范来自于 JavaEE 规范中的一种。
-作用：
-在 Servlet 规范中，指定 ==动态资源文件的开发步骤==。
-在 Servlet 规范中，指定 ==Http 服务器调用动态资源文件的规则==。
-在 Servlet 规范中，指定 ==Http 服务器管理动态资源文件实例对象的规则==。
+          20.1 多线程概述什么是进程？什么是线程？
 
+进程是一个应用程序（1个进程是一个软件）
 
+线程是一个进程中的执行场景/执行单元。
 
-二、Servlet 接口实现类：
-Servlet 接
+一个进程可以启动多个线程。
+
+对于java程序来说，当在DOS命令窗口中输入：java HelloWorld 回车之后，会先启动JVM，而JVM就是一个进程。JVM再启动一个主线程调用main方法。
+同时再启动一个垃圾回收线程负责看护，回收垃圾。最起码，现在的jav
         </a>
       </p>
 
@@ -359,7 +360,7 @@ Servlet 接
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2021-09-13 20:51" pubdate>
+            <time datetime="2021-09-13 22:24" pubdate>
               2021-09-13
             </time>
           </div>
@@ -368,7 +369,7 @@ Servlet 接
           <div class="post-meta mr-3">
             <i class="iconfont icon-category"></i>
             
-              <a href="/categories/JavaWeb/">JavaWeb</a>
+              <a href="/categories/Java-%E5%9F%BA%E7%A1%80/">Java 基础</a>
             
           </div>
         
@@ -376,7 +377,7 @@ Servlet 接
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/JavaWeb/">JavaWeb</a>
+              <a href="/tags/Java-%E5%9F%BA%E7%A1%80/">Java 基础</a>
             
           </div>
         
@@ -390,33 +391,28 @@ Servlet 接
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
-        <a href="/2021/09/13/JavaWeb/" target="_blank">
-          JavaWeb
+        <a href="/2021/09/13/Java%E5%9F%BA%E7%A1%80-2021-09-13-%E9%9B%86%E5%90%88/" target="_blank">
+          18、集合
         </a>
       </h1>
 
       <p class="index-excerpt">
-        <a href="/2021/09/13/JavaWeb/" target="_blank">
+        <a href="/2021/09/13/Java%E5%9F%BA%E7%A1%80-2021-09-13-%E9%9B%86%E5%90%88/" target="_blank">
           
           
             
           
-          1、基本概念1.1 前言web开发：
+          18.1 集合概述18.1.1 什么是集合
+集合实际上就是一个**==容器==**。可以来容纳其它类型的数据。
 
-web，网页的意思， www.baidu.com
-静态 web：
-html , css
-提供给所有人看到数据始终不会发生变化！
+集合不能直接存储基本数据类型，另外集合也不能直接存储java对象，
+**==集合当中存储的都是java对象的内存地址==**。（或者说集合中存储的是引用。）
 
-
-动态 web：
-淘宝，京东，几乎所有网站都是；
-提供给所有人看到的数据始终会发生变化，每个人在不同事件、不同地点看到的信息时不同的！
-技术栈：Servlet \ JSP \ ASP \ PHP
+集合在java中本身是一个容器，是一个**==对象==**
 
 
 
-==在 Java 中，动态 
+18.1.2 在java中每一个不同的集合，底层会对应不同的
         </a>
       </p>
 
@@ -424,7 +420,7 @@ html , css
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2021-09-13 20:50" pubdate>
+            <time datetime="2021-09-13 22:20" pubdate>
               2021-09-13
             </time>
           </div>
@@ -433,7 +429,7 @@ html , css
           <div class="post-meta mr-3">
             <i class="iconfont icon-category"></i>
             
-              <a href="/categories/JavaWeb/">JavaWeb</a>
+              <a href="/categories/Java-%E5%9F%BA%E7%A1%80/">Java 基础</a>
             
           </div>
         
@@ -441,7 +437,7 @@ html , css
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/JavaWeb/">JavaWeb</a>
+              <a href="/tags/Java-%E5%9F%BA%E7%A1%80/">Java 基础</a>
             
           </div>
         
@@ -455,48 +451,21 @@ html , css
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
-        <a href="/2021/09/13/IDEA-%E5%8E%9F%E7%94%9F%E5%B8%B8%E7%94%A8%E5%BF%AB%E6%8D%B7%E9%94%AE/" target="_blank">
-          IDEA 原生常用快捷键
+        <a href="/2021/09/13/Java%E5%9F%BA%E7%A1%80-2021-09-13-%E5%BC%82%E5%B8%B8%EF%BC%88Exception%EF%BC%89/" target="_blank">
+          17、异常（Exception）
         </a>
       </h1>
 
       <p class="index-excerpt">
-        <a href="/2021/09/13/IDEA-%E5%8E%9F%E7%94%9F%E5%B8%B8%E7%94%A8%E5%BF%AB%E6%8D%B7%E9%94%AE/" target="_blank">
+        <a href="/2021/09/13/Java%E5%9F%BA%E7%A1%80-2021-09-13-%E5%BC%82%E5%B8%B8%EF%BC%88Exception%EF%BC%89/" target="_blank">
           
           
             
           
-          
+          17.1 异常的基本概念17.1.1 异常信息123456public class Test01 &#123;    public static void main(String[] args) &#123;        int r = 10 / 0;        System.out.println(r);    &#125;&#125;
 
-
-
-功能
-快捷键
-
-
-
-1
-执行（run）
-shift + F10
-
-
-2
-提示补全 (Second Basic Completion)
-Ctrl + Alt + 空格
-
-
-3
-单行注释（Comment with Line Comment）
-Ctrl + /
-
-
-4
-多行注释（Comment with Block Comment）
-Ctrl + Shift + /
-
-
-5
-向下复制一行 (Du
+以上程序运行后已出现异常
+12Exception 
         </a>
       </p>
 
@@ -504,7 +473,7 @@ Ctrl + Shift + /
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2021-09-13 20:49" pubdate>
+            <time datetime="2021-09-13 22:19" pubdate>
               2021-09-13
             </time>
           </div>
@@ -513,7 +482,7 @@ Ctrl + Shift + /
           <div class="post-meta mr-3">
             <i class="iconfont icon-category"></i>
             
-              <a href="/categories/JavaWeb/">JavaWeb</a>
+              <a href="/categories/Java-%E5%9F%BA%E7%A1%80/">Java 基础</a>
             
           </div>
         
@@ -521,7 +490,7 @@ Ctrl + Shift + /
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/JavaWeb/">JavaWeb</a>
+              <a href="/tags/Java-%E5%9F%BA%E7%A1%80/">Java 基础</a>
             
           </div>
         
@@ -535,23 +504,22 @@ Ctrl + Shift + /
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
-        <a href="/2021/09/13/Http%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE%E5%8C%85/" target="_blank">
-          Http网络协议包
+        <a href="/2021/09/13/Java%E5%9F%BA%E7%A1%80-2021-09-13-%E5%B8%B8%E7%94%A8%E7%B1%BB/" target="_blank">
+          16、常用类
         </a>
       </h1>
 
       <p class="index-excerpt">
-        <a href="/2021/09/13/Http%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE%E5%8C%85/" target="_blank">
+        <a href="/2021/09/13/Java%E5%9F%BA%E7%A1%80-2021-09-13-%E5%B8%B8%E7%94%A8%E7%B1%BB/" target="_blank">
           
           
             
           
-          一、网络协议包：
-在网络中传递信息都是以 ==二进制== 形式存在的。
-接收方【浏览器/服务器】在接收信息后，要做第一件事就是将【二进制数据】进行编译【文字，图片，视频，命令】
-传递信息数据量往往比较巨大，导致接收方很难在一组连续二进制得到对应数据
+          16、常用类16.1 String16.1.1 String 概述关于 java JDK 内置的一个类：java.lang.string
 
-123比如 浏览器发送一个请求： http://192.168.100.2:8080/index.html这个请求信息以二进制形式发送 010101
+ String 表示字符类型串，属于引用数据类型，不属于基本数据类型
+在 java 中随便使用双引号括起来的都是 String 对象，例如“abc”，“def”，“hello world”，这是三个 String 对象
+java 中规定，双引号括起来的字符串，
         </a>
       </p>
 
@@ -559,7 +527,7 @@ Ctrl + Shift + /
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2021-09-13 20:46" pubdate>
+            <time datetime="2021-09-13 22:16" pubdate>
               2021-09-13
             </time>
           </div>
@@ -568,7 +536,7 @@ Ctrl + Shift + /
           <div class="post-meta mr-3">
             <i class="iconfont icon-category"></i>
             
-              <a href="/categories/JavaWeb/">JavaWeb</a>
+              <a href="/categories/Java-%E5%9F%BA%E7%A1%80/">Java 基础</a>
             
           </div>
         
@@ -576,7 +544,7 @@ Ctrl + Shift + /
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/JavaWeb/">JavaWeb</a>
+              <a href="/tags/Java-%E5%9F%BA%E7%A1%80/">Java 基础</a>
             
           </div>
         
@@ -590,25 +558,24 @@ Ctrl + Shift + /
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
-        <a href="/2021/09/13/EL%E8%A1%A8%E8%BE%BE%E5%BC%8F/" target="_blank">
-          EL表达式
+        <a href="/2021/09/13/Java%E5%9F%BA%E7%A1%80-2021-09-13-%E6%95%B0%E7%BB%84/" target="_blank">
+          15、数组
         </a>
       </h1>
 
       <p class="index-excerpt">
-        <a href="/2021/09/13/EL%E8%A1%A8%E8%BE%BE%E5%BC%8F/" target="_blank">
+        <a href="/2021/09/13/Java%E5%9F%BA%E7%A1%80-2021-09-13-%E6%95%B0%E7%BB%84/" target="_blank">
           
           
             
           
-          一、第一章EL工具包介绍
-由 Java 技术开发的一个 jar 包。
-作用是降低 JSP 文件开发时 Java 命令的开发强度。
-Tomcat 服务器本身自带了 EL 工具包，位置是 D:\Environmental\Tomcat\apache-tomcat-9.0.41\lib\el-api.jar
-
-二、传统 JSP 文件主要的开发步骤
-第一步：从指定的作用域对象中读取处理结果。
-第二步：将得
+          15.1 数组概要
+Java 语言中的数组是一种引用数据类型，不属于基本数据类型，数组的父类是 Object
+数组实际上是一个容器，可以同时容纳多个元素
+数组中既可以存储基本数据类型数据，也可以存储引用数据类型数据
+数组对象存储在堆内存中
+数组当中如果存储的是 “引用数据类型”，实际上存储的是对象的 “引用” （对象的内存地址）
+==数组一旦创建，在 Java 中规定，数组长度不可变。==访问元素
         </a>
       </p>
 
@@ -616,7 +583,7 @@ Tomcat 服务器本身自带了 EL 工具包，位置是 D:\Environmental\Tomcat
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2021-09-13 20:44" pubdate>
+            <time datetime="2021-09-13 22:15" pubdate>
               2021-09-13
             </time>
           </div>
@@ -625,7 +592,7 @@ Tomcat 服务器本身自带了 EL 工具包，位置是 D:\Environmental\Tomcat
           <div class="post-meta mr-3">
             <i class="iconfont icon-category"></i>
             
-              <a href="/categories/JavaWeb/">JavaWeb</a>
+              <a href="/categories/Java-%E5%9F%BA%E7%A1%80/">Java 基础</a>
             
           </div>
         
@@ -633,7 +600,7 @@ Tomcat 服务器本身自带了 EL 工具包，位置是 D:\Environmental\Tomcat
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/JavaWeb/">JavaWeb</a>
+              <a href="/tags/Java-%E5%9F%BA%E7%A1%80/">Java 基础</a>
             
           </div>
         
@@ -647,22 +614,29 @@ Tomcat 服务器本身自带了 EL 工具包，位置是 D:\Environmental\Tomcat
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
-        <a href="/2021/09/13/SpringMVC/" target="_blank">
-          SpringMVC
+        <a href="/2021/09/13/Java%E5%9F%BA%E7%A1%80-2021-09-13-%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/" target="_blank">
+          14、面向对象
         </a>
       </h1>
 
       <p class="index-excerpt">
-        <a href="/2021/09/13/SpringMVC/" target="_blank">
+        <a href="/2021/09/13/Java%E5%9F%BA%E7%A1%80-2021-09-13-%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/" target="_blank">
           
           
             
           
-          1. SpringMVC 概述1.1 SpringMVC 简介
-SpringMVC 是一个基于Java 的实现了 MVC 设计模式的请求驱动类型的轻量级 Web 框架，通过把 Model，View，Controller 分离，将 web 层进行职责解耦，把复杂的 web 应用分成逻辑清晰的几部分，简化开发，减少出错，方便组内开发人员之间的配合。
+          14.1 final关键字
+final修饰的类无法继承
 
+final修饰的方法无法覆盖
 
-Model（模型）：数据模型，提供要展示的数据。
+final修饰的变量只能赋一次值
+
+final修饰的引用一旦指向某个对象，则不能再重新指向其它对象，但该引用指向的对象内部的数据是可以修改的（数组对象就是一个引用，可以对数组中的元素进行更改，但是当前对象不能指向另一个数组）
+
+final修饰的实例变量必须手动初始化，不能采用系统默认值
+
+final修饰的实例
         </a>
       </p>
 
@@ -670,7 +644,7 @@ Model（模型）：数据模型，提供要展示的数据。
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2021-09-13 17:52" pubdate>
+            <time datetime="2021-09-13 22:13" pubdate>
               2021-09-13
             </time>
           </div>
@@ -679,9 +653,7 @@ Model（模型）：数据模型，提供要展示的数据。
           <div class="post-meta mr-3">
             <i class="iconfont icon-category"></i>
             
-              <a href="/categories/SSM-%E6%A1%86%E6%9E%B6/">SSM 框架</a>
-            
-              <a href="/categories/SSM-%E6%A1%86%E6%9E%B6/SpringMVC/">SpringMVC</a>
+              <a href="/categories/Java-%E5%9F%BA%E7%A1%80/">Java 基础</a>
             
           </div>
         
@@ -689,7 +661,7 @@ Model（模型）：数据模型，提供要展示的数据。
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/SSM-%E6%A1%86%E6%9E%B6/">SSM 框架</a>
+              <a href="/tags/Java-%E5%9F%BA%E7%A1%80/">Java 基础</a>
             
           </div>
         
@@ -703,33 +675,24 @@ Model（模型）：数据模型，提供要展示的数据。
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
-        <a href="/2021/09/13/MyBatis/" target="_blank">
-          MyBatis
+        <a href="/2021/09/13/Java%E5%9F%BA%E7%A1%80-2021-09-13-super%E5%85%B3%E9%94%AE%E5%AD%97/" target="_blank">
+          13、super关键字
         </a>
       </h1>
 
       <p class="index-excerpt">
-        <a href="/2021/09/13/MyBatis/" target="_blank">
+        <a href="/2021/09/13/Java%E5%9F%BA%E7%A1%80-2021-09-13-super%E5%85%B3%E9%94%AE%E5%AD%97/" target="_blank">
           
           
             
           
-          一、三层架构
-界面层（视图层）
-
-完成和用户的交互，接受请求，显示请求的处理结果。
-使用 SpringMVC 框架来实现。
-
-业务逻辑层
-
-计算数据，处理业务逻辑。
-使用 Spring 框架来实现。
-
-数据访问层（持久层）
-
-对数据库进行操作。
-使用 MyBatis 进行操作。
-二、概述1. MyBatis 是什么，有什么特点？它是一款半自动的 ORM 持久层框架，具有较高的 SQL 灵活性，支持
+          13.1 super介绍
+super能出现在实例方法和构造方法中。
+super的语法是：“super.”、“super()”
+super不能使用在静态方法中。
+super. 大部分情况下是可以省略的。
+[super.什么时候不能省略呢](###13.4 super. 什么时候不能省略)
+==super() 只能出现在构造方法第一行，通过当前的构造方法去调用“父类”中的构造方法，目的是：创建子类对象
         </a>
       </p>
 
@@ -737,7 +700,7 @@ Model（模型）：数据模型，提供要展示的数据。
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2021-09-13 17:50" pubdate>
+            <time datetime="2021-09-13 22:12" pubdate>
               2021-09-13
             </time>
           </div>
@@ -746,9 +709,7 @@ Model（模型）：数据模型，提供要展示的数据。
           <div class="post-meta mr-3">
             <i class="iconfont icon-category"></i>
             
-              <a href="/categories/SSM-%E6%A1%86%E6%9E%B6/">SSM 框架</a>
-            
-              <a href="/categories/SSM-%E6%A1%86%E6%9E%B6/MyBatis/">MyBatis</a>
+              <a href="/categories/Java-%E5%9F%BA%E7%A1%80/">Java 基础</a>
             
           </div>
         
@@ -756,7 +717,7 @@ Model（模型）：数据模型，提供要展示的数据。
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/SSM-%E6%A1%86%E6%9E%B6/">SSM 框架</a>
+              <a href="/tags/Java-%E5%9F%BA%E7%A1%80/">Java 基础</a>
             
           </div>
         
@@ -770,18 +731,30 @@ Model（模型）：数据模型，提供要展示的数据。
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
-        <a href="/2021/09/13/Spring/" target="_blank">
-          Spring
+        <a href="/2021/09/13/Java%E5%9F%BA%E7%A1%80-2021-09-13-%E6%96%B9%E6%B3%95%E8%A6%86%E7%9B%96%EF%BC%88Override%EF%BC%89/" target="_blank">
+          11、方法覆盖（Override）
         </a>
       </h1>
 
       <p class="index-excerpt">
-        <a href="/2021/09/13/Spring/" target="_blank">
+        <a href="/2021/09/13/Java%E5%9F%BA%E7%A1%80-2021-09-13-%E6%96%B9%E6%B3%95%E8%A6%86%E7%9B%96%EF%BC%88Override%EF%BC%89/" target="_blank">
           
           
             
           
-          1. Spring 概述Spring 简介Spring 是一个开源框架，是一个与 2003 年兴起的轻量级的 Java 开发框架，最早由Rod Johnson创建，目的是为了解决企业级应用开发的业务逻辑层和其他各层的耦合问题。它是一个分层的 JavaSE/JavaEE full-stack（一站式）轻量级开源框架，为开发 Java 应用程序提供全面的基础架构支持。Spring 负责基础架构，因此 
+          11.1 什么时候考虑使用方法覆盖
+子类继承父类之后，当继承过来的方法无法满足当前子类的业务需求时，子类有权利对这个方法进行重新编写，有必要进行“方法的覆盖”。
+[回顾方法重载](###6.3 方法重载（Overload）)
+
+11.2 怎样才能构成方法覆盖
+两个类必须要有继承关系。
+重写之后的方法和之前的方法具有：
+相同的返回值类型
+相同的方法名
+相同的形式参数列表
+
+
+访问权限不能更低，可以更
         </a>
       </p>
 
@@ -789,7 +762,7 @@ Model（模型）：数据模型，提供要展示的数据。
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2021-09-13 17:44" pubdate>
+            <time datetime="2021-09-13 22:09" pubdate>
               2021-09-13
             </time>
           </div>
@@ -798,9 +771,7 @@ Model（模型）：数据模型，提供要展示的数据。
           <div class="post-meta mr-3">
             <i class="iconfont icon-category"></i>
             
-              <a href="/categories/SSM-%E6%A1%86%E6%9E%B6/">SSM 框架</a>
-            
-              <a href="/categories/SSM-%E6%A1%86%E6%9E%B6/Spring/">Spring</a>
+              <a href="/categories/Java-%E5%9F%BA%E7%A1%80/">Java 基础</a>
             
           </div>
         
@@ -808,7 +779,7 @@ Model（模型）：数据模型，提供要展示的数据。
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/SSM-%E6%A1%86%E6%9E%B6/">SSM 框架</a>
+              <a href="/tags/Java-%E5%9F%BA%E7%A1%80/">Java 基础</a>
             
           </div>
         
@@ -820,7 +791,7 @@ Model（模型）：数据模型，提供要展示的数据。
 
   <nav aria-label="navigation">
     <span class="pagination" id="pagination">
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/#board">2</a><a class="extend next" rel="next" href="/page/2/#board"><i class="iconfont icon-arrowright"></i></a>
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/#board">2</a><a class="page-number" href="/page/3/#board">3</a><a class="page-number" href="/page/4/#board">4</a><a class="extend next" rel="next" href="/page/2/#board"><i class="iconfont icon-arrowright"></i></a>
     </span>
   </nav>
 

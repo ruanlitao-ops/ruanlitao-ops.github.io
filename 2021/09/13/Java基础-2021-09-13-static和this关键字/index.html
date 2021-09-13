@@ -1,0 +1,614 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="叶尘的技术升级小木屋">
+  <meta name="author" content="叶尘">
+  <meta name="keywords" content="">
+  
+  <title>9、static和this关键字 - 叶尘的技术升级小木屋</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.7.2/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.8.11","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>YECHEN-OPS</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-qrcode"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" target="_self" role="button"
+                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="iconfont icon-books"></i>
+                文档
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" target="_blank" rel="noopener" href="https://hexo.fluid-dev.com/">
+                    
+                    主题博客
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" target="_blank" rel="noopener" href="https://hexo.fluid-dev.com/docs/guide/">
+                    
+                    配置指南
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" target="_blank" rel="noopener" href="https://hexo.fluid-dev.com/docs/icon/">
+                    
+                    图标用法
+                  </a>
+                
+              </div>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="9、static和this关键字">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-author" aria-hidden="true"></i>
+      叶尘
+    </span>
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2021-09-13 22:07" pubdate>
+        星期一, 九月 13日 2021, 10:07 晚上
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      2.2k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      25
+       分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- LeanCloud 统计文章PV -->
+      <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="leancloud-page-views"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">9、static和this关键字</h1>
+            
+            <div class="markdown-body">
+              <h3 id="9-1-static"><a href="#9-1-static" class="headerlink" title="9.1 static"></a>9.1 static</h3><h4 id="9-1-1-static介绍"><a href="#9-1-1-static介绍" class="headerlink" title="9.1.1 static介绍"></a>9.1.1 static介绍</h4><ul>
+<li>static翻译为“静态”</li>
+<li>所有static关键字修饰的都是类相关的，类级别的。</li>
+<li>所有static修饰的，都是采用“类名.”的方式访问。</li>
+<li>static修饰的变量：静态变量</li>
+<li>static修饰的方法：静态方法</li>
+</ul>
+<h4 id="9-1-2-变量的分类"><a href="#9-1-2-变量的分类" class="headerlink" title="9.1.2 变量的分类"></a>9.1.2 变量的分类</h4><ul>
+<li>根据声明的位置进行划分：<ul>
+<li>在方法体当中声明的变量叫做：局部变量</li>
+<li>在方法体之外声明的变量叫做：成员变量</li>
+</ul>
+</li>
+<li>成员变量又可以分为：<ul>
+<li>实例变量</li>
+<li>静态变量</li>
+</ul>
+</li>
+<li>三种变量分别存储在不同的内存中：<ul>
+<li>局部变量：存储在栈内存中</li>
+<li>实例变量：存储在堆内存中（对象级别的）</li>
+<li>静态变量：存储在方法区中（是最先初始化的）（类级别的）</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">VarTest</span></span>&#123;<br><br>	<span class="hljs-comment">// 以下实例的，都是对象相关的，访问时采用“引用.”的方式访问。需要先new对象。</span><br>	<span class="hljs-comment">// 实例相关的，必须先有对象，才能访问，可能会出现空指针异常。</span><br>	<span class="hljs-comment">// 成员变量中的实例变量</span><br>	<span class="hljs-keyword">int</span> i;<br><br>	<span class="hljs-comment">// 实例方法</span><br>	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">m2</span><span class="hljs-params">()</span></span>&#123;<br>		<span class="hljs-comment">// 局部变量</span><br>		<span class="hljs-keyword">int</span> x = <span class="hljs-number">200</span>;<br>	&#125;<br><br>	<span class="hljs-comment">// 以下静态的，都是类相关的，访问时采用“类名.”的方式访问。不需要new对象。</span><br>	<span class="hljs-comment">// 不需要对象的参与即可访问。没有空指针异常的发生。</span><br>	<span class="hljs-comment">// 成员变量中的静态变量</span><br>	<span class="hljs-keyword">static</span> <span class="hljs-keyword">int</span> k;<br><br>	<span class="hljs-comment">// 静态方法</span><br>	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">m1</span><span class="hljs-params">()</span></span>&#123;<br>		<span class="hljs-comment">// 局部变量</span><br>		<span class="hljs-keyword">int</span> m = <span class="hljs-number">100</span>;<br>	&#125;<br>	<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+<h4 id="9-1-3-什么时候使用静态变量"><a href="#9-1-3-什么时候使用静态变量" class="headerlink" title="9.1.3 什么时候使用静态变量"></a>9.1.3 什么时候使用静态变量</h4><ul>
+<li><strong>如果这个类型的所有对象的某个属性值都是一样的</strong>，不建议定义为实例变量，浪费内存空间</li>
+<li>建议定义为类级别特征，<strong>定义为静态变量，在 ==方法区== 中只保留一份</strong>，节省内存开销。</li>
+<li><strong>一个对象一份的是实例变量。</strong></li>
+<li><strong>所有对象一份的是静态变量</strong></li>
+<li>==划重点：静态变量会在类加载的时候初始化，并且存储在方法区中。==</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// 定义一个类表示中国人</span><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Chinese</span> </span>&#123;<br>    <span class="hljs-comment">// 身份证</span><br>    <span class="hljs-comment">// 每个人的身份证都不一样，用实例变量表示</span><br>    String idCard;<br>    <span class="hljs-comment">// 姓名</span><br>    <span class="hljs-comment">// 一个人对应一个名字，用实例变量表示</span><br>    String name;<br>    <span class="hljs-comment">// 国籍</span><br>    <span class="hljs-comment">// 每个人的国籍都一样，属于整个类的特征，使用静态变量表示</span><br>    <span class="hljs-keyword">static</span> String country;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h4 id="9-1-4-实例变量和静态变量访问方法的区别"><a href="#9-1-4-实例变量和静态变量访问方法的区别" class="headerlink" title="9.1.4 实例变量和静态变量访问方法的区别"></a>9.1.4 实例变量和静态变量访问方法的区别</h4><ul>
+<li>实例变量：一定需要使用 “引用.” 来访问</li>
+<li>静态变量：建议使用 “类名.” 来访问，也可以使用 “引用.” 来访问，但是不推荐，这样会产生歧义</li>
+<li><strong>当 “空引用” 访问 “实例” 相关（实例变量，实例方法）的时候，会出现空指针异常；</strong></li>
+<li><strong>当 “空引用” 访问 “类” 相关（静态变量，静态方法）的时候，不会出现空指针异常。</strong></li>
+</ul>
+<h4 id="9-1-5-什么时候定义为实例方法？什么时候定义为静态方法？"><a href="#9-1-5-什么时候定义为实例方法？什么时候定义为静态方法？" class="headerlink" title="9.1.5 什么时候定义为实例方法？什么时候定义为静态方法？"></a>9.1.5 什么时候定义为实例方法？什么时候定义为静态方法？</h4><ul>
+<li>一个方法一般描述了一个行为，如果说该行为必须由对象去触发，那么该方法定义为实例方法。</li>
+<li>当这个方法体当中，**==直接访问了实例变量==**，这个方法一定是实例方法。</li>
+<li>我们以后开发中，大部分情况下，如果是工具类的话，<strong>工具类当中的方法一般都是静态的</strong>。(静态方法有一个优点，是不需要new对象，直接采用类名调用，极其方便。工具类就是为了方便，所以工具类中的方法一般都是static的。)</li>
+</ul>
+<h4 id="9-1-6-静态代码块"><a href="#9-1-6-静态代码块" class="headerlink" title="9.1.6 静态代码块"></a>9.1.6 静态代码块</h4><p>使用 static 关键字可以定义静态代码块</p>
+<ul>
+<li>语法：</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">static</span> &#123;<br>    java语句;<br>    java语句;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>静态代码块在什么时候执行：<ul>
+<li>==类加载时执行==（早于 main 方法执行）</li>
+<li>并且只执行一次</li>
+</ul>
+</li>
+<li>一个程序可以写多个静态代码块</li>
+<li>静态代码块一般是按照自上而下的顺序执行</li>
+<li>静态代码块有啥作用，有什么用<ul>
+<li>静态代码块不是那么常用（不是在每一个类中都要写）</li>
+<li>静态代码块这种语法机制实际上是SUN公司给我们java程序员的==一个特殊的时刻/时机==。这个时机叫做：==类加载时机==。如：<strong>记录类加载的日志信息</strong></li>
+</ul>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">StaticTest</span> </span>&#123;<br>    <span class="hljs-comment">// 静态代码块</span><br>    <span class="hljs-keyword">static</span> &#123;<br>        System.out.println(<span class="hljs-string">&quot;我是第一个静态代码块&quot;</span>);<br>    &#125;<br>    <br>    <span class="hljs-comment">// 静态代码块</span><br>    <span class="hljs-keyword">static</span> &#123;<br>        System.out.println(<span class="hljs-string">&quot;我是第二个静态代码块&quot;</span>);<br>    &#125;<br>    <br>    <span class="hljs-comment">// main方法</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123;<br>        System.out.println(<span class="hljs-string">&quot;我是main方法&quot;</span>);<br>    &#125;<br>    <span class="hljs-comment">// 静态代码块</span><br>    <span class="hljs-keyword">static</span> &#123;<br>        System.out.println(<span class="hljs-string">&quot;我是第三个静态代码块&quot;</span>);<br>    &#125;<br>&#125;<br><br><span class="hljs-comment">/*</span><br><span class="hljs-comment">输出：</span><br><span class="hljs-comment">    我是第一个静态代码块</span><br><span class="hljs-comment">    我是第二个静态代码块</span><br><span class="hljs-comment">    我是第三个静态代码块</span><br><span class="hljs-comment">    我是main方法</span><br><span class="hljs-comment">*/</span><br></code></pre></td></tr></table></figure>
+
+<h4 id="9-1-7-JVM中的三块内存"><a href="#9-1-7-JVM中的三块内存" class="headerlink" title="9.1.7 JVM中的三块内存"></a>9.1.7 JVM中的三块内存</h4><ul>
+<li>方法只要执行，会压栈。（局部变量）</li>
+<li>new出来的对象都在堆中。垃圾回收器主要针对。（实例变量）</li>
+<li>类的信息，字节码信息，代码片段。（静态变量）</li>
+<li><strong>静态方法的代码片段放在方法区，但是方法执行过程当中需要的内存在栈中。</strong></li>
+</ul>
+<h4 id="9-1-8-目前为止，在-Java-程序中有顺序要求的"><a href="#9-1-8-目前为止，在-Java-程序中有顺序要求的" class="headerlink" title="9.1.8 目前为止，在 Java 程序中有顺序要求的"></a>9.1.8 目前为止，在 Java 程序中有顺序要求的</h4><ol>
+<li>对于一个方法来说，方法体中的代码执行是有顺序的，遵循自上而下的顺序执行</li>
+<li>静态代码块一和静态代码块二的执行是有先后顺序的</li>
+<li>静态代码块和静态变量在类加载时是有先后顺序的</li>
+</ol>
+<h4 id="9-1-9-实例代码块"><a href="#9-1-9-实例代码块" class="headerlink" title="9.1.9 实例代码块"></a>9.1.9 实例代码块</h4><ul>
+<li>语法</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs java">&#123;<br>    java语句;<br>    java语句;<br>    java语句;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>实例语句块在什么时候执行<ul>
+<li>实例语句在类加载是<strong>并没有执行</strong></li>
+<li>只要是构造方法执行，必然在构造方法执行之前，自动执行“实例语句块”中的代码。（==在构造方法前执行==）</li>
+<li>实际上这也是SUN公司为java程序员准备一个特殊的时机，叫做==对象构建时机==。</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">InstanceCode</span></span>&#123;<br><br>	<span class="hljs-comment">//入口</span><br>	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span></span>&#123;<br>		System.out.println(<span class="hljs-string">&quot;main begin&quot;</span>);<br>		<span class="hljs-keyword">new</span> InstanceCode();<span class="hljs-comment">// 调用无参构造</span><br>		<span class="hljs-keyword">new</span> InstanceCode();<br>		<span class="hljs-keyword">new</span> InstanceCode(<span class="hljs-string">&quot;abc&quot;</span>);<span class="hljs-comment">// 调用有参构造</span><br>		<span class="hljs-keyword">new</span> InstanceCode(<span class="hljs-string">&quot;xyz&quot;</span>);<br>	&#125;<br>    <br>	<span class="hljs-comment">//实例语句块</span><br>	&#123;<br>		System.out.println(<span class="hljs-string">&quot;实例语句块执行！&quot;</span>);	<br>	&#125;<br><br>	<span class="hljs-comment">// Constructor</span><br>	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">InstanceCode</span><span class="hljs-params">()</span></span>&#123;<br>		System.out.println(<span class="hljs-string">&quot;无参数构造方法&quot;</span>);<br>	&#125;<br><br>	<span class="hljs-comment">// Constructor</span><br>	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">InstanceCode</span><span class="hljs-params">(String name)</span></span>&#123;<br>		System.out.println(<span class="hljs-string">&quot;有参数的构造方法&quot;</span>);<br>	&#125;<br>&#125;<br><br><span class="hljs-comment">/*</span><br><span class="hljs-comment">输出：</span><br><span class="hljs-comment">    main begin</span><br><span class="hljs-comment">    实例语句块执行！</span><br><span class="hljs-comment">    无参数构造方法</span><br><span class="hljs-comment">    实例语句块执行！</span><br><span class="hljs-comment">    无参数构造方法</span><br><span class="hljs-comment">    实例语句块执行！</span><br><span class="hljs-comment">    有参数的构造方法</span><br><span class="hljs-comment">    实例语句块执行！</span><br><span class="hljs-comment">    有参数的构造方法</span><br><span class="hljs-comment">*/</span><br></code></pre></td></tr></table></figure>
+
+
+
+
+
+<h3 id="9-2-this"><a href="#9-2-this" class="headerlink" title="9.2 this"></a>9.2 this</h3><h4 id="9-2-1-this介绍"><a href="#9-2-1-this介绍" class="headerlink" title="9.2.1 this介绍"></a>9.2.1 this介绍</h4><ul>
+<li>this是一个关键字，全部小写。</li>
+<li>一个对象一个this</li>
+<li>this是一个变量，是一个引用，==this保存当前对象的内存地址，指向自身==，严格意义上来说，this代表的就是“当前对象”</li>
+<li>==this存储在堆内存当中对象的内部==</li>
+</ul>
+<h4 id="9-2-2-this的内存结构"><a href="#9-2-2-this的内存结构" class="headerlink" title="9.2.2 this的内存结构"></a>9.2.2 this的内存结构</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ThisTest01</span></span>&#123;<br>	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span></span>&#123;<br><br>		Customer c1 = <span class="hljs-keyword">new</span> Customer(<span class="hljs-string">&quot;张三&quot;</span>);<br>		Customer c2 = <span class="hljs-keyword">new</span> Customer(<span class="hljs-string">&quot;李四&quot;</span>);<br>	&#125;<br>&#125;<br><br><span class="hljs-comment">// 顾客类</span><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Customer</span></span>&#123;<br><br>	<span class="hljs-comment">// 实例变量</span><br>	String name;   <br><br>	<span class="hljs-comment">//构造方法</span><br>	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">Customer</span><span class="hljs-params">()</span></span>&#123;<br>	<br>	&#125;<br>	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">Customer</span><span class="hljs-params">(String s)</span></span>&#123;<br>		name = s;<br>	&#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://img-blog.csdnimg.cn/20210206205315532.png" srcset="/img/loading.gif" lazyload alt="image-20210206205256696"></p>
+<h4 id="9-2-3-this的使用"><a href="#9-2-3-this的使用" class="headerlink" title="9.2.3 this的使用"></a>9.2.3 this的使用</h4><ul>
+<li>==this只能使用在实例方法中==。谁调用这个实例方法，this就是谁。所以this代表的是：当前对象。</li>
+<li>“this.”大部分情况下是可以省略的</li>
+<li>为什么this不能使用在静态方法中<ul>
+<li>this代表当前对象，静态方法中不存在当前对象</li>
+</ul>
+</li>
+</ul>
+<h4 id="9-2-4-this-什么时候不能省略"><a href="#9-2-4-this-什么时候不能省略" class="headerlink" title="9.2.4 this. 什么时候不能省略"></a>9.2.4 this. 什么时候不能省略</h4><ul>
+<li>在实例方法中，或者构造方法中，==为了区分局部变量和实例变量==，这种情况下：this. 是不能省略的。</li>
+</ul>
+<h4 id="9-2-5-this"><a href="#9-2-5-this" class="headerlink" title="9.2.5 this()"></a>9.2.5 this()</h4><p><strong>this除了可以使用在实例方法中，还可以用在构造方法中</strong></p>
+<ul>
+<li>通过当前的构造方法去调用另一个本类的构造方法，可以使用以下语法格式</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">this</span>(实际参数列表);<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li><p>通过一个构造方法1去调用构造方法2，可以做到<strong>代码复用</strong>。但需要注意的是：“构造方法1”和“构造方法2” 都是在同一个类当中。</p>
+</li>
+<li><p>==注意：对于this()的调用只能出现在构造方法的第一行==</p>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Date</span> </span>&#123;<br>    <span class="hljs-keyword">int</span> year;<br>    <span class="hljs-keyword">int</span> month;<br>    <span class="hljs-keyword">int</span> day;<br>    <br>    <span class="hljs-comment">// 调用无参构造方法是，显示 1970年1月1日</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">Date</span><span class="hljs-params">()</span> </span>&#123;<br>        <span class="hljs-keyword">this</span>(<span class="hljs-number">1970</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>);<br>    &#125;<br>    <br>    <span class="hljs-comment">// 有参构造</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">Date</span><span class="hljs-params">(<span class="hljs-keyword">int</span> year, <span class="hljs-keyword">int</span> month, <span class="hljs-keyword">int</span> day)</span> </span>&#123;<br>        <span class="hljs-keyword">this</span>.year = year;<br>        <span class="hljs-keyword">this</span>.month = month;<br>        <span class="hljs-keyword">this</span>.day = day;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/Java-%E5%9F%BA%E7%A1%80/">Java 基础</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/Java-%E5%9F%BA%E7%A1%80/">Java 基础</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2021/09/13/Java%E5%9F%BA%E7%A1%80-2021-09-13-%E7%BB%A7%E6%89%BF%EF%BC%88extends%EF%BC%89/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">10、继承（extends）</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/09/13/Java%E5%9F%BA%E7%A1%80-2021-09-13-%E8%AE%A4%E8%AF%86%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/">
+                        <span class="hidden-mobile">7、认识面向对象</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.3/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.1/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js" ></script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>
