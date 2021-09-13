@@ -4,6 +4,56 @@
   
   
   <entry>
+    <title>变量</title>
+    <link href="/2021/09/13/Java-2021-09-13-%E5%8F%98%E9%87%8F/"/>
+    <url>/2021/09/13/Java-2021-09-13-%E5%8F%98%E9%87%8F/</url>
+    
+    <content type="html"><![CDATA[<p>软件在处理数据之前需要能够表示数据，在java代码中怎么去表示数据呢？在java中有这样的一个概念：字面量。</p><p>在java语言中“数据”被称为“字面量”。</p><h4 id="2-1-字面量可以分为很多种类："><a href="#2-1-字面量可以分为很多种类：" class="headerlink" title="2.1 字面量可以分为很多种类："></a>2.1 字面量可以分为很多种类：</h4><ul><li>整数型字面量</li><li>浮点型字面量</li><li>布尔型字面量</li><li>字符型字面量</li><li>字符串型字面量</li></ul><h4 id="2-2-什么是变量"><a href="#2-2-什么是变量" class="headerlink" title="2.2 什么是变量:"></a>2.2 什么是变量:</h4><ul><li>变量其实就是内存当中存储数据的最基本的单元</li><li>变量有不同的数据类型，如int，float，double……</li><li>不同的数据类型在内存中分配的空间大小不同</li></ul><ol><li><p>变量来说有三个要素:</p><ol><li>变量的数据类型（类型决定空间的大小）</li><li>变量的名字（起个名字是为了以后方便访问。（以后在程序中访问这个数据是通过名称来访问的。））</li><li>变量中保存的值（就是字面量）</li></ol></li><li><p>在java语言中有一个规定，变量必须先声明，再赋值才能访问。（没有值相当于这个空间没有开辟。）</p></li><li><p><strong>重要的结论：在同一个域当中（这个域怎么理解，后面讲），变量名不能重名，不能重复声明。</strong></p></li><li><p>变量可以重新赋值，但在同一个域当中，不能重复声明。</p></li><li><p>关于变量的一个分类（这个需要“死记硬背”。）：</p><ul><li>变量根据出现的位置进行划分：<ol><li>在<strong>方法体当中声明</strong>的变量：局部变量。</li><li>在<strong>方法体之外</strong>，<strong>类体内声明</strong>的变量：成员变量。</li></ol></li><li>注意：局部变量只在方法体当中有效，方法体执行结束该变量的内存就释放了。</li></ul></li><li><p>变量的作用域：</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">/*</span><br><span class="hljs-comment">变量的作用域？</span><br><span class="hljs-comment">1、什么是作用域？</span><br><span class="hljs-comment">变量的有效范围。</span><br><span class="hljs-comment">2、关于变量的作用域，大家可以记住一句话：</span><br><span class="hljs-comment">出了大括号就不认识了。（死记这句话。）</span><br><span class="hljs-comment">3、java中有一个很重要的原则：</span><br><span class="hljs-comment">就近原则。（不仅java中是这样，其它编程语言都有这个原则。）</span><br><span class="hljs-comment">哪个离我近，就访问哪个。</span><br><span class="hljs-comment">*/</span><br><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">VarTest08</span></span>&#123;<br><br><span class="hljs-comment">// 成员变量</span><br><span class="hljs-keyword">int</span> i = <span class="hljs-number">10000</span>;<br><br><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span></span>&#123;<br><span class="hljs-comment">// 局部变量</span><br><span class="hljs-keyword">int</span> i = <span class="hljs-number">100</span>; <span class="hljs-comment">// 这个i的有效范围是main方法。</span><br>System.out.println(i); <span class="hljs-comment">// 这个i是多少？</span><br><br><span class="hljs-comment">// 同一个域当中，这是不允许的。</span><br><span class="hljs-comment">// int i = 90;  </span><br><br><span class="hljs-comment">// 考核一下：以下编写for循环你看不懂，没关系，后面会将。</span><br><span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> n = <span class="hljs-number">0</span>; n &lt; <span class="hljs-number">10</span>; n++)&#123; <span class="hljs-comment">// 这里声明的n变量只属于for域。for结束后n释放没了。</span><br><span class="hljs-comment">// 这里没有编写代码。</span><br>&#125;<br><br><span class="hljs-comment">// for循环执行结束之后，在这里访问n变量可以吗？</span><br><span class="hljs-comment">//System.out.println(n);  //错误: 找不到符号</span><br><br><span class="hljs-keyword">int</span> k; <span class="hljs-comment">// 属于main域。</span><br><span class="hljs-keyword">for</span>(k = <span class="hljs-number">0</span>; k &lt; <span class="hljs-number">10</span>; k++)&#123;<br><br>&#125;<br><span class="hljs-comment">// 能否继续访问k呢？</span><br>System.out.println(k);<br>&#125;<br><br><span class="hljs-comment">// 这个方法怎么定义先不用管，后面会学习。</span><br><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">x</span><span class="hljs-params">()</span></span>&#123;<br><span class="hljs-comment">// 在这个位置上能访问i吗？</span><br><span class="hljs-comment">// 错误: 找不到符号</span><br><span class="hljs-comment">// System.out.println(i); // i是无法访问的。</span><br><br><span class="hljs-comment">// 可以定义一个变量起名i吗？</span><br><span class="hljs-comment">// 这个i的有效范围是x方法。</span><br><span class="hljs-comment">// 局部变量</span><br><span class="hljs-keyword">int</span> i = <span class="hljs-number">200</span>; <span class="hljs-comment">// 所以这个i和main方法中的i不在同一个域当中。不冲突。</span><br>&#125;<br>&#125;<br></code></pre></td></tr></table></figure></li></ol>]]></content>
+    
+    
+    <categories>
+      
+      <category>Java 基础</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>Java 基础</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>标识符与关键字</title>
+    <link href="/2021/09/13/Java-2021-09-13-%E6%A0%87%E8%AF%86%E7%AC%A6%E4%B8%8E%E5%85%B3%E9%94%AE%E5%AD%97/"/>
+    <url>/2021/09/13/Java-2021-09-13-%E6%A0%87%E8%AF%86%E7%AC%A6%E4%B8%8E%E5%85%B3%E9%94%AE%E5%AD%97/</url>
+    
+    <content type="html"><![CDATA[<h3 id="1-1-标识符"><a href="#1-1-标识符" class="headerlink" title="1.1  标识符"></a>1.1  标识符</h3><p>==标识符就是程序员自己有权利自己去改的单词（黑色高亮字体）==</p><h4 id="1-1-1-标识符的命名规则（是语法，不遵守会报错，必须遵守）"><a href="#1-1-1-标识符的命名规则（是语法，不遵守会报错，必须遵守）" class="headerlink" title="1.1.1 标识符的命名规则（是语法，不遵守会报错，必须遵守）"></a>1.1.1 标识符的命名规则（是语法，不遵守会报错，必须遵守）</h4><ul><li>标识符只能由数字、字母（包括中文）、下划线、美元符号组成，不能含有其他符号。</li><li>标识符不能以数字开头。</li><li>关键字不能做标识符，如public 、class、static。</li><li>标识符是严格个规定大小写的（但类名最好不同）。</li><li>标识符理论上是没有长度限制的。</li></ul><h4 id="1-1-2-标识符的命名规范（不符合规范也行，代码可读性差）"><a href="#1-1-2-标识符的命名规范（不符合规范也行，代码可读性差）" class="headerlink" title="1.1.2 标识符的命名规范（不符合规范也行，代码可读性差）"></a>1.1.2 标识符的命名规范（不符合规范也行，代码可读性差）</h4><ul><li>见名知意（看到名字就知道啥意思）。</li><li>遵循驼峰命名方式（单词之间很好的进行分隔）。</li><li>类名、接口名首字母大写，后面单词首字母大写。</li><li>变量名、方法名首字母小写，后面单词首字母大写。</li><li>所有常量，全部大写，并且单词和单词之间用下划线衔接。</li></ul><h3 id="1-2-关键字"><a href="#1-2-关键字" class="headerlink" title="1.2 关键字"></a>1.2 关键字</h3><p>==SUN 公司开发 Java 时，提前定义好的特殊含义的单词，全部小写（蓝色高亮字体），关键字不能做标识符==</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>Java 基础</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>Java 基础</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>Servlet 规范</title>
     <link href="/2021/09/13/Servlet-%E8%A7%84%E8%8C%83/"/>
     <url>/2021/09/13/Servlet-%E8%A7%84%E8%8C%83/</url>
