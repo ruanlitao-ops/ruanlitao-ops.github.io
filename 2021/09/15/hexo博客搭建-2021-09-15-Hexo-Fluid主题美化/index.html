@@ -1,0 +1,611 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.ico">
+  <link rel="icon" href="/img/favicon.ico">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="叶尘的技术升级小木屋">
+  <meta name="author" content="叶尘">
+  <meta name="keywords" content="">
+  
+  <title>Hexo-Fluid主题美化 - 叶尘的技术升级小木屋</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.7.2/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+  
+<link rel="stylesheet" href="//cdn.jsdelivr.net/gh/bynotes/texiao/source/css/shubiao.css">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/gh/bynotes/texiao/source/css/gundongtiao.css">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/gh/bynotes/texiao/source/css/daziyanse.css">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/gh/bynotes/texiao/source/css/toubudaziji.css">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"www.yechen-blog.cn","root":"/","version":"1.8.11","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.0"><link rel="stylesheet" href="\assets\css\APlayer.min.css" class="aplayer-style-marker">
+<script src="\assets\js\APlayer.min.js" class="aplayer-script-marker"></script>
+<script src="\assets\js\Meting.min.js" class="meting-script-marker"></script>
+</head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>YECHEN</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-qrcode"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/playlist/">
+                <i class="iconfont icon-music"></i>
+                音乐
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" target="_self" role="button"
+                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="iconfont icon-books"></i>
+                链接
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" target="_blank" rel="noopener" href="https://hexo.fluid-dev.com/">
+                    
+                    主题博客
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" target="_blank" rel="noopener" href="https://hexo.fluid-dev.com/docs/guide/">
+                    
+                    配置指南
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" target="_blank" rel="noopener" href="https://hexo.fluid-dev.com/docs/icon/">
+                    
+                    图标用法
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" target="_blank" rel="noopener" href="https://www.bilibili.com">
+                    
+                    哔哩哔哩
+                  </a>
+                
+              </div>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/banner.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="Hexo-Fluid主题美化">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-author" aria-hidden="true"></i>
+      叶尘
+    </span>
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2021-09-15 16:18" pubdate>
+        星期三, 九月 15日 2021, 4:18 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      1.7k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      23
+       分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- LeanCloud 统计文章PV -->
+      <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="leancloud-page-views"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">Hexo-Fluid主题美化</h1>
+            
+            <div class="markdown-body">
+              <h3 id="1、顶部导航栏"><a href="#1、顶部导航栏" class="headerlink" title="1、顶部导航栏"></a>1、顶部导航栏</h3><p>可以在文件根目录下的 <code>_config.fluid.yml</code> 文件中添加</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-comment"># 博客标题 和 导航菜单</span><br><span class="hljs-attr">navbar:</span><br>  <span class="hljs-attr">blog_title:</span> <span class="hljs-string">YECHEN</span><br>  <span class="hljs-attr">menu:</span><br>    <span class="hljs-bullet">-</span> &#123; <span class="hljs-attr">key:</span> <span class="hljs-string">&#x27;home&#x27;</span>, <span class="hljs-attr">link:</span> <span class="hljs-string">&#x27;/&#x27;</span>, <span class="hljs-attr">icon:</span> <span class="hljs-string">&#x27;iconfont icon-home-fill&#x27;</span> &#125;<br>    <span class="hljs-bullet">-</span> &#123; <span class="hljs-attr">key:</span> <span class="hljs-string">&#x27;分类&#x27;</span>, <span class="hljs-attr">link:</span> <span class="hljs-string">&#x27;/categories/&#x27;</span>, <span class="hljs-attr">icon:</span> <span class="hljs-string">&#x27;iconfont icon-qrcode&#x27;</span> &#125;<br>    <span class="hljs-bullet">-</span> &#123; <span class="hljs-attr">key:</span> <span class="hljs-string">&#x27;tag&#x27;</span>, <span class="hljs-attr">link:</span> <span class="hljs-string">&#x27;/tags/&#x27;</span>, <span class="hljs-attr">icon:</span> <span class="hljs-string">&#x27;iconfont icon-tags-fill&#x27;</span> &#125;<br>    <span class="hljs-bullet">-</span> &#123; <span class="hljs-attr">key:</span> <span class="hljs-string">&#x27;about&#x27;</span>, <span class="hljs-attr">link:</span> <span class="hljs-string">&#x27;/about/&#x27;</span>, <span class="hljs-attr">icon:</span> <span class="hljs-string">&#x27;iconfont icon-user-fill&#x27;</span>, <span class="hljs-attr">name:</span> <span class="hljs-string">&#x27;关于&#x27;</span> &#125;<br>    <span class="hljs-bullet">-</span> &#123; <span class="hljs-attr">key:</span> <span class="hljs-string">&quot;音乐&quot;</span>, <span class="hljs-attr">link:</span> <span class="hljs-string">&quot;/playlist/&quot;</span>, <span class="hljs-attr">icon:</span> <span class="hljs-string">&quot;iconfont icon-music&quot;</span> &#125;<br>    <span class="hljs-bullet">-</span> &#123;<br>      <span class="hljs-attr">key:</span> <span class="hljs-string">&#x27;链接&#x27;</span>,<br>      <span class="hljs-attr">icon:</span> <span class="hljs-string">&#x27;iconfont icon-books&#x27;</span>,<br>      <span class="hljs-attr">submenu:</span> [<br>        &#123; <span class="hljs-attr">key:</span> <span class="hljs-string">&#x27;主题博客&#x27;</span>, <span class="hljs-attr">link:</span> <span class="hljs-string">&#x27;https://hexo.fluid-dev.com/&#x27;</span> &#125;,<br>        &#123; <span class="hljs-attr">key:</span> <span class="hljs-string">&#x27;配置指南&#x27;</span>, <span class="hljs-attr">link:</span> <span class="hljs-string">&#x27;https://hexo.fluid-dev.com/docs/guide/&#x27;</span> &#125;,<br>        &#123; <span class="hljs-attr">key:</span> <span class="hljs-string">&#x27;图标用法&#x27;</span>, <span class="hljs-attr">link:</span> <span class="hljs-string">&#x27;https://hexo.fluid-dev.com/docs/icon/&#x27;</span> &#125;,<br>        &#123; <span class="hljs-attr">key:</span> <span class="hljs-string">&#x27;哔哩哔哩&#x27;</span>, <span class="hljs-attr">link:</span> <span class="hljs-string">&#x27;https://www.bilibili.com&#x27;</span> &#125;<br>      ]<br>    &#125;<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/yechen-ops/image-hosting@master/20210915/image.5vki2tuy81g0.png" srcset="/img/loading.gif" lazyload alt="导航栏"></p>
+<p>更多的图标使用在<a target="_blank" rel="noopener" href="https://hexo.fluid-dev.com/docs/icon/">图标用法</a></p>
+<h3 id="2、首页图片-打字机"><a href="#2、首页图片-打字机" class="headerlink" title="2、首页图片+打字机"></a>2、首页图片+打字机</h3><p>首页图片设置在文件根目录下的 <code>_config.fluid.yml</code> 文件中添加</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-comment"># 首页设置</span><br><span class="hljs-attr">index:</span><br>  <span class="hljs-attr">slogan:</span> <span class="hljs-comment"># 首页打字机</span><br>    <span class="hljs-attr">enable:</span> <span class="hljs-literal">true</span><br>    <span class="hljs-attr">text:</span> <span class="hljs-string">长风破浪会有时，直挂云帆济沧海</span>   <br>  <span class="hljs-attr">post_url_target:</span> <span class="hljs-string">_self</span>  <span class="hljs-comment"># 文章跳转方式，_blank：新标签页打开，_self：当前标签页打开</span><br>  <span class="hljs-attr">post_meta:</span> <span class="hljs-comment"># 文章信息，可配置隐藏包括发布时间、分类、标签。</span><br>    <span class="hljs-attr">date:</span> <span class="hljs-literal">true</span><br>    <span class="hljs-attr">category:</span> <span class="hljs-literal">true</span><br>    <span class="hljs-attr">tag:</span> <span class="hljs-literal">true</span><br>  <span class="hljs-attr">banner_img:</span> <span class="hljs-string">/img/bg-banner-index.jpg</span>  <span class="hljs-comment"># 首页顶部大图</span><br>  <span class="hljs-attr">banner_img_height:</span> <span class="hljs-number">80</span><br>  <span class="hljs-attr">banner_mask_alpha:</span> <span class="hljs-number">0.2</span><br></code></pre></td></tr></table></figure>
+
+<blockquote>
+<p>TIP</p>
+<p>如果是本地图片，目录文件夹可自定义，但必须在 source 目录下，博客与主题的 source 目录最终会合并，因此优先选择博客的 source。</p>
+<p>图片大小建议压缩到 1MB 以内，否则会严重拖慢页面加载。</p>
+</blockquote>
+<ul>
+<li>高度</li>
+</ul>
+<p>鉴于每个人的喜好不同，开放对页面 <code>banner_img</code> 高度的控制。</p>
+<p><strong>主题配置</strong>中，每个页面对应的 <code>banner_img_height</code> 属性，有效值为 0 - 100。100 即为全屏，个人建议 70 以上。</p>
+<ul>
+<li>蒙版透明度</li>
+</ul>
+<p><strong>主题配置</strong>中，每个页面对应的 <code>banner_mask_alpha</code> 属性，有效值为 0 - 1.0， 0 是完全透明（无蒙版），1 是完全不透明</p>
+<p><img src="https://cdn.jsdelivr.net/gh/yechen-ops/image-hosting@master/20210915/image.1zj584yqmd5s.png" srcset="/img/loading.gif" lazyload alt="首页图片"></p>
+<h3 id="3、文章的图片"><a href="#3、文章的图片" class="headerlink" title="3、文章的图片"></a>3、文章的图片</h3><p>可以在文件根目录下的 <code>_config.fluid.yml</code> 文件中默认指定，当每篇文章没有指定这些东西的时候，就使用默认值。</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-attr">post:</span>  <br>  <span class="hljs-attr">default_index_img:</span> <span class="hljs-string">/img/blog.jpeg</span> <span class="hljs-comment"># 设置文章在首页的图片</span><br>  <span class="hljs-attr">banner_img:</span> <span class="hljs-string">/img/banner.jpg</span> <span class="hljs-comment"># 设置文章页顶部大图</span><br></code></pre></td></tr></table></figure>
+
+<p>对于单篇文章，在文章开头 Front-matter 中配置 <code>index_img</code> 和 <code>banner_img </code>属性。</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-meta">---</span><br><span class="hljs-attr">title:</span> <span class="hljs-string">文章标题</span><br><span class="hljs-attr">tags:</span> [<span class="hljs-string">Hexo</span>, <span class="hljs-string">Fluid</span>]<br><span class="hljs-attr">index_img:</span> <span class="hljs-string">/img/blog.jpeg</span><br><span class="hljs-attr">banner_img:</span> <span class="hljs-string">/img/banner.jpg</span><br><span class="hljs-attr">date:</span> <span class="hljs-number">2019-10-10 10:00:00</span><br><span class="hljs-meta">---</span><br><span class="hljs-string">以下是文章内容</span><br></code></pre></td></tr></table></figure>
+
+<p>也可以使用外链 Url 的绝对路径。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/yechen-ops/image-hosting@master/20210915/image.3jlur0q7aqg0.png" srcset="/img/loading.gif" lazyload alt="首页图片"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/yechen-ops/image-hosting@master/20210915/image.4jgiqdf205c0.png" srcset="/img/loading.gif" lazyload alt="文章页顶部大图"></p>
+<h3 id="4、一些动画效果"><a href="#4、一些动画效果" class="headerlink" title="4、一些动画效果"></a>4、一些动画效果</h3><p>可以直接使用别人已经写好的 js 和 css，通过 cdn 引入</p>
+<p>可以在文件根目录下的 <code>_config.fluid.yml</code> 文件中指定</p>
+<p>我这里使用了这些动画效果，<a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_43471926/article/details/109798811">参考自</a></p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-comment"># 引用特效</span><br><span class="hljs-attr">custom_js:</span><br>  <span class="hljs-bullet">-</span> <span class="hljs-string">//cdn.jsdelivr.net/gh/bynotes/texiao/source/js/xiaoxuehua.js</span> <span class="hljs-comment"># 小雪花飘落</span><br>  <span class="hljs-bullet">-</span> <span class="hljs-string">//cdn.jsdelivr.net/gh/bynotes/texiao/source/js/caidai.js</span> <span class="hljs-comment"># 动态彩带</span><br>  <span class="hljs-bullet">-</span> <span class="hljs-string">//cdn.jsdelivr.net/gh/bynotes/texiao/source/js/timeDate.js</span> <span class="hljs-comment"># 运行时间  </span><br>  <span class="hljs-bullet">-</span> <span class="hljs-string">//cdn.jsdelivr.net/gh/bynotes/texiao/source/js/love.js</span> <span class="hljs-comment"># 鼠标点击出小爱心❤   </span><br>  <span class="hljs-bullet">-</span> <span class="hljs-string">//cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js</span>  <span class="hljs-comment">#/APlayer#/APlayer依赖</span><br>  <span class="hljs-bullet">-</span> <span class="hljs-string">//cdn.jsdelivr.net/gh/metowolf/MetingJS@1.2/dist/Meting.min.js</span>  <span class="hljs-comment">#/APlayer依赖</span><br><span class="hljs-attr">custom_css:</span><br>  <span class="hljs-bullet">-</span> <span class="hljs-string">//cdn.jsdelivr.net/gh/bynotes/texiao/source/css/shubiao.css</span> <span class="hljs-comment"># 鼠标指针  </span><br>  <span class="hljs-bullet">-</span> <span class="hljs-string">//cdn.jsdelivr.net/gh/bynotes/texiao/source/css/gundongtiao.css</span> <span class="hljs-comment"># 滚动条颜色</span><br>  <span class="hljs-bullet">-</span> <span class="hljs-string">//cdn.jsdelivr.net/gh/bynotes/texiao/source/css/daziyanse.css</span> <span class="hljs-comment"># 头部打字机颜色</span><br>  <span class="hljs-bullet">-</span> <span class="hljs-string">//cdn.jsdelivr.net/gh/bynotes/texiao/source/css/toubudaziji.css</span> <span class="hljs-comment"># 头部打字机颜色效果渐变</span><br>  <span class="hljs-bullet">-</span> <span class="hljs-string">//cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css</span>   <span class="hljs-comment">#/APlayer依赖</span><br></code></pre></td></tr></table></figure>
+
+
+
+<p>当然如果想要对动画进行自定义，就需要自己在源代码中添加，这里手动添加一个背景动态线条效果。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/yechen-ops/image-hosting@master/20210915/image.74ypj7a0d600.png" srcset="/img/loading.gif" lazyload alt="背景动态线条效果"></p>
+<p>在 hexo 根目录下 <code>\themes\fluid\layout\layout.ejs</code> 的文件中添加一下代码</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs js">&lt;!--动态线条背景--&gt;<br>  <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;text/javascript&quot;</span> <span class="hljs-attr">color</span>=<span class="hljs-string">&quot;70,119,184&quot;</span> <span class="hljs-attr">opacity</span>=<span class="hljs-string">&#x27;1&#x27;</span> <span class="hljs-attr">zIndex</span>=<span class="hljs-string">&quot;-2&quot;</span> <span class="hljs-attr">count</span>=<span class="hljs-string">&quot;200&quot;</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></span><br></code></pre></td></tr></table></figure>
+
+<p>其中：</p>
+<ul>
+<li>color：表示线条颜色，三个数字分别为(R,G,B)，默认：（0,0,0），这里我使用了和首页图片相似的颜色</li>
+<li>opacity：表示线条透明度（0~1），默认：0.5</li>
+<li>count：表示线条的总数量，默认：150</li>
+<li>zIndex：表示背景的z-index属性，css属性用于控制所在层的位置，默认：-1</li>
+</ul>
+<h3 id="5、修改网站-icon"><a href="#5、修改网站-icon" class="headerlink" title="5、修改网站 icon"></a>5、修改网站 icon</h3><p>在 hexo 根目录下 <code>\themes\fluid\_config.yml</code> 的文件中修改</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-comment"># 用于浏览器标签的图标</span><br><span class="hljs-comment"># Icon for browser tab</span><br><span class="hljs-attr">favicon:</span> <span class="hljs-string">/img/favicon.ico</span><br><br><span class="hljs-comment"># 用于苹果设备的图标</span><br><span class="hljs-comment"># Icon for Apple touch</span><br><span class="hljs-attr">apple_touch_icon:</span> <span class="hljs-string">/img/favicon.ico</span><br></code></pre></td></tr></table></figure>
+
+<p>favincon.ico 文件存放于 /source/img 目录中，可以自己寻找喜欢的图标。</p>
+<h3 id="6、添加音乐播放器"><a href="#6、添加音乐播放器" class="headerlink" title="6、添加音乐播放器"></a>6、添加音乐播放器</h3><p>如果你想使用音乐页面，很多人都会推荐安装 <a target="_blank" rel="noopener" href="https://github.com/MoePlayer/hexo-tag-aplayer">hexo-tag-aplayer</a> 这款插件。 这款插件通过Hexo独有的标签外挂，我们可以很方便的写入一些参数，插件就会帮我们生成对应的 html。</p>
+<p>（1）安装插件</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">npm install --save hexo-tag-aplayer<br></code></pre></td></tr></table></figure>
+
+<p>（2）在主题配置文件 <code>_config.fluid.yml</code> 中添加 js 和 css 依赖</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-attr">custom_js:</span>  <span class="hljs-bullet">-</span> <span class="hljs-string">//cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js</span>  <span class="hljs-comment">#/APlayer#/APlayer依赖  - //cdn.jsdelivr.net/gh/metowolf/MetingJS@1.2/dist/Meting.min.js  #/APlayer依赖custom_css:  - //cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css   #/APlayer依赖</span><br></code></pre></td></tr></table></figure>
+
+<p>（3）然后在网站的根目录下的配置文件 <code>_config.yml</code> 中填上以下代码</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-comment"># aplayer 音乐播放aplayer:    meting: true  </span><br></code></pre></td></tr></table></figure>
+
+<p>（4）建立音乐页面</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-string">hexo</span> <span class="hljs-string">new</span> <span class="hljs-string">page</span> <span class="hljs-string">playlist</span><br></code></pre></td></tr></table></figure>
+
+<p>此时会生成文件 /source/playlist/index.md，编辑文件</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-string">---title:</span> <span class="hljs-string">轻松简约，怡然自得</span> <span class="hljs-comment"># 页面的打字机文字date: 2021-09-14 21:42:27banner_img: /img/bg-banner-index.jpg # 页面图片layout: playlisttype: playlist---</span><br></code></pre></td></tr></table></figure>
+
+<p>具体内容就是指定要展示什么，我这里歌单的链接 <a target="_blank" rel="noopener" href="https://y.qq.com/n/ryqq/playlist/7973954820%EF%BC%8C%E6%89%80%E4%BB%A5%E5%B0%B1%E8%BF%99%E6%A0%B7%E5%86%99">https://y.qq.com/n/ryqq/playlist/7973954820，所以就这样写</a></p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs yaml">&#123;<span class="hljs-string">%</span> <span class="hljs-string">meting</span> <span class="hljs-string">&quot;7973954820&quot;</span> <span class="hljs-string">&quot;tencent&quot;</span> <span class="hljs-string">&quot;playlist&quot;</span> <span class="hljs-string">&quot;theme:#4275bb&quot;</span> <span class="hljs-string">&quot;mutex:true&quot;</span> <span class="hljs-string">&quot;listmaxheight:340px&quot;</span> <span class="hljs-string">&quot;preload:auto&quot;</span> <span class="hljs-string">%</span>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>其中有关选项有</p>
+<p><img src="https://cdn.jsdelivr.net/gh/yechen-ops/image-hosting@master/20210915/image.4h0lb81wi3u0.png" srcset="/img/loading.gif" lazyload alt="有关选项"></p>
+<p>在运行时，上述语句会被渲染为 </p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;aplayer-uxAIfEUs&quot;</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;aplayer aplayer-tag-marker meting-tag-marker&quot;</span> <span class="hljs-attr">data-id</span>=<span class="hljs-string">&quot;7973954820&quot;</span> <span class="hljs-attr">data-server</span>=<span class="hljs-string">&quot;tencent&quot;</span> <span class="hljs-attr">data-type</span>=<span class="hljs-string">&quot;playlist&quot;</span> <span class="hljs-attr">data-mode</span>=<span class="hljs-string">&quot;circulation&quot;</span> <span class="hljs-attr">data-autoplay</span>=<span class="hljs-string">&quot;false&quot;</span> <span class="hljs-attr">data-mutex</span>=<span class="hljs-string">&quot;true&quot;</span> <span class="hljs-attr">data-listmaxheight</span>=<span class="hljs-string">&quot;340px&quot;</span> <span class="hljs-attr">data-preload</span>=<span class="hljs-string">&quot;auto&quot;</span> <span class="hljs-attr">data-theme</span>=<span class="hljs-string">&quot;#4275bb&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+
+
+<p>（5）将音乐页面添加到导航栏</p>
+<p>编辑 <code>_config.fluid.yml</code> 文件</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-attr">navbar:  blog_title: YECHEN  menu:</span>    <span class="hljs-bullet">-</span> &#123; <span class="hljs-attr">key:</span> <span class="hljs-string">&quot;音乐&quot;</span>, <span class="hljs-attr">link:</span> <span class="hljs-string">&quot;/playlist/&quot;</span>, <span class="hljs-attr">icon:</span> <span class="hljs-string">&quot;iconfont icon-music&quot;</span> &#125;<br></code></pre></td></tr></table></figure>
+
+
+
+<p><img src="https://cdn.jsdelivr.net/gh/yechen-ops/image-hosting@master/20210915/image.o42ouh8iihs.png" srcset="/img/loading.gif" lazyload alt="image"></p>
+<h3 id="参考文档"><a href="#参考文档" class="headerlink" title="参考文档"></a>参考文档</h3><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_43471926/article/details/109798811">Hexo-Fluid主题美化</a></p>
+<p><a target="_blank" rel="noopener" href="https://itrhx.blog.csdn.net/article/details/85420403#font_colorFF00001_font_22">Hexo 博客优化之博客美化系列</a></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_43471926/article/details/109798928?utm_medium=distribute.pc_relevant.none-task-blog-2~default~CTRLIST~default-2.no_search_link&depth_1-utm_source=distribute.pc_relevant.none-task-blog-2~default~CTRLIST~default-2.no_search_link">Hexo-Fluid主题添加音乐页面</a></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/hushhw/article/details/88092728">Hexo主题插入音乐之aplayer音乐播放器</a></p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/Hexo%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/">Hexo博客搭建</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/Hexo%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/">Hexo博客搭建</a>
+                    
+                      <a class="hover-with-bg" href="/tags/JS/">JS</a>
+                    
+                      <a class="hover-with-bg" href="/tags/HTML/">HTML</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/09/15/hexo%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA-2021-09-15-hexo%E9%83%A8%E7%BD%B2%E5%88%B0coding/">
+                        <span class="hidden-mobile">hexo部署到coding</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.3/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.1/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js" ></script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+<script src="//cdn.jsdelivr.net/gh/bynotes/texiao/source/js/xiaoxuehua.js"></script>
+<script src="//cdn.jsdelivr.net/gh/bynotes/texiao/source/js/caidai.js"></script>
+<script src="//cdn.jsdelivr.net/gh/bynotes/texiao/source/js/timeDate.js"></script>
+<script src="//cdn.jsdelivr.net/gh/bynotes/texiao/source/js/love.js"></script>
+<script src="//cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
+<script src="//cdn.jsdelivr.net/gh/metowolf/MetingJS@1.2/dist/Meting.min.js"></script>
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+  <!--动态线条背景-->
+  <script type="text/javascript" color="70,119,184" opacity='1' zIndex="-2" count="200" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"jsonPath":"/live2dw/assets/koharu.model.json"},"display":{"position":"right","width":200,"height":400},"mobile":{"show":false},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>
