@@ -18,7 +18,7 @@
   <meta name="author" content="叶尘">
   <meta name="keywords" content="">
   
-  <title>SpringBoot设置字符编码 - 叶尘的技术升级小木屋</title>
+  <title>SpringBoot使用拦截器 - 叶尘的技术升级小木屋</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" />
 
@@ -219,7 +219,7 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="SpringBoot设置字符编码">
+            <span class="h2" id="subtitle" title="SpringBoot使用拦截器">
               
             </span>
 
@@ -234,8 +234,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2021-10-02 13:50" pubdate>
-        星期六, 十月 2日 2021, 1:50 下午
+      <time datetime="2021-10-02 13:51" pubdate>
+        星期六, 十月 2日 2021, 1:51 下午
       </time>
     </span>
   
@@ -246,7 +246,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      231 字
+      454 字
     </span>
   
 
@@ -256,7 +256,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      3
+      6
        分钟
     </span>
   
@@ -294,20 +294,29 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">SpringBoot设置字符编码</h1>
+            <h1 style="display: none">SpringBoot使用拦截器</h1>
             
             <div class="markdown-body">
-              <h3 id="一、通过配置类"><a href="#一、通过配置类" class="headerlink" title="一、通过配置类"></a>一、通过配置类</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Configuration</span> <span class="hljs-comment">//设置为配置类</span><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">SystemConfig</span> </span>&#123;<br>	<span class="hljs-meta">@Bean</span><br>	<span class="hljs-function"><span class="hljs-keyword">public</span> FilterRegistrationBean <span class="hljs-title">characterFilterRegistration</span><span class="hljs-params">()</span> </span>&#123;<br>		<span class="hljs-comment">//设置字符编码过滤器</span><br>		<span class="hljs-comment">//CharacterEncoding 是由 Spring 提供的一个字符编码过滤器，之前是配置在 web.xml 文件中</span><br>		CharacterEncodingFilter characterEncodingFilter = <span class="hljs-keyword">new</span> CharacterEncodingFilter();<br>		<span class="hljs-comment">//强制使用指定字符编码</span><br>		characterEncodingFilter.setForceEncoding(<span class="hljs-keyword">true</span>);<br>		<span class="hljs-comment">//设置指定字符编码</span><br>		characterEncodingFilter.setEncoding(<span class="hljs-string">&quot;UTF-8&quot;</span>);<br>		<span class="hljs-comment">//创建过滤器注册 bean</span><br>		FilterRegistrationBean filterRegistrationBean = <span class="hljs-keyword">new</span> FilterRegistrationBean();<br>		<span class="hljs-comment">//设置字符编码过滤器</span><br>		filterRegistrationBean.setFilter(characterEncodingFilter);<br>		<span class="hljs-comment">//设置字符编码过滤器路径</span><br>		filterRegistrationBean.addUrlPatterns(<span class="hljs-string">&quot;/*&quot;</span>);<br>		<span class="hljs-keyword">return</span> filterRegistrationBean;<br>	&#125; <br>&#125;<br></code></pre></td></tr></table></figure>
-
-<p>此时要使用该配置，需要<strong>关闭</strong> <strong>SpringBoot</strong> <strong>的</strong> <strong>http</strong> <strong>字符编码支持</strong>，在配置文件中 application.properties</p>
-<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs properties"><span class="hljs-comment">#关闭 springboot 的 http 字符编码支持</span><br><span class="hljs-comment">#只有关闭该选项后，spring 字符编码过滤器才生效</span><br><span class="hljs-meta">server.servlet.encoding.enabled</span>=<span class="hljs-string">false</span><br></code></pre></td></tr></table></figure>
+              <h3 id="一、写一个简单控制器"><a href="#一、写一个简单控制器" class="headerlink" title="一、写一个简单控制器"></a>一、写一个简单控制器</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@RestController</span><br><span class="hljs-meta">@RequestMapping(&quot;/user&quot;)</span><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">UserController</span> </span>&#123;<br><br>    <span class="hljs-comment">// 登录方法，不被拦截</span><br>    <span class="hljs-meta">@RequestMapping(&quot;/login&quot;)</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> User <span class="hljs-title">login</span><span class="hljs-params">(HttpSession session)</span> </span>&#123;<br>        User user = <span class="hljs-keyword">new</span> User();<br>        user.setName(<span class="hljs-string">&quot;张三&quot;</span>);<br>        user.setAge(<span class="hljs-number">20</span>);<br><br>        <span class="hljs-comment">// 将 user 对象放入 session 中</span><br>        session.setAttribute(<span class="hljs-string">&quot;user&quot;</span>, user);<br>        <span class="hljs-keyword">return</span> user;<br>    &#125;<br><br>    <span class="hljs-comment">// 登录后才能访问</span><br>    <span class="hljs-meta">@RequestMapping(&quot;/detail&quot;)</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">detail</span><span class="hljs-params">()</span> </span>&#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;登录成功，这里是主页信息&quot;</span>;<br>    &#125;<br><br>    <span class="hljs-comment">// 登录前就可以访问</span><br>    <span class="hljs-meta">@RequestMapping(&quot;info&quot;)</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">info</span><span class="hljs-params">()</span> </span>&#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;欢迎访问本站！&quot;</span>;<br>    &#125;<br><br>    <span class="hljs-comment">// 被拦截后的请求访问的路径</span><br>    <span class="hljs-meta">@RequestMapping(&quot;/error&quot;)</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">error</span><span class="hljs-params">()</span> </span>&#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;请先登录在操作&quot;</span>;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 
 
-<h3 id="二、通过配置文件"><a href="#二、通过配置文件" class="headerlink" title="二、通过配置文件"></a>二、通过配置文件</h3><figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs properties"><span class="hljs-comment">#设置请求响应的字符编码</span><br><span class="hljs-meta">server.servlet.encoding.enabled</span>=<span class="hljs-string">true</span><br><span class="hljs-meta">server.servlet.encoding.force</span>=<span class="hljs-string">true</span><br><span class="hljs-meta">server.servlet.encoding.charset</span>=<span class="hljs-string">UTF-8</span><br></code></pre></td></tr></table></figure>
+<h3 id="二、编写拦截器，实现-HandlerInterceptor-接口"><a href="#二、编写拦截器，实现-HandlerInterceptor-接口" class="headerlink" title="二、编写拦截器，实现 HandlerInterceptor 接口"></a>二、编写拦截器，实现 HandlerInterceptor 接口</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">UserInterceptor</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">HandlerInterceptor</span> </span>&#123;<br><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">preHandle</span><span class="hljs-params">(HttpServletRequest request, HttpServletResponse response, Object handler)</span> <span class="hljs-keyword">throws</span> Exception </span>&#123;<br><br>        System.out.println(<span class="hljs-string">&quot;开始拦截请求：&quot;</span>+request.getServletPath());<br>        Object user = request.getSession().getAttribute(<span class="hljs-string">&quot;user&quot;</span>);<br>        <span class="hljs-keyword">if</span> (user != <span class="hljs-keyword">null</span>) &#123;<br>            <span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span>;<br>        &#125;<br>        <span class="hljs-comment">// 当 session 中没有值的时候，就拦截，并重定向到 /user/error 路径</span><br>        response.sendRedirect(request.getContextPath() + <span class="hljs-string">&quot;/user/error&quot;</span>);<br>        <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;<br>    &#125;<br><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">postHandle</span><span class="hljs-params">(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView)</span> <span class="hljs-keyword">throws</span> Exception </span>&#123;<br>        HandlerInterceptor.<span class="hljs-keyword">super</span>.postHandle(request, response, handler, modelAndView);<br>    &#125;<br><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">afterCompletion</span><span class="hljs-params">(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex)</span> <span class="hljs-keyword">throws</span> Exception </span>&#123;<br>        HandlerInterceptor.<span class="hljs-keyword">super</span>.afterCompletion(request, response, handler, ex);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 
 
+<h3 id="三、编写拦截器配置类"><a href="#三、编写拦截器配置类" class="headerlink" title="三、编写拦截器配置类"></a>三、编写拦截器配置类</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Configuration</span><span class="hljs-comment">// 定义一个配置类</span><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">UserInterceptorConfig</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">WebMvcConfigurer</span> </span>&#123;<br>    <span class="hljs-comment">// 重写该方法，添加拦截器</span><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">addInterceptors</span><span class="hljs-params">(InterceptorRegistry registry)</span> </span>&#123;<br>        <span class="hljs-comment">// 注册拦截器</span><br>        InterceptorRegistration interceptorRegistration = registry.addInterceptor(<span class="hljs-keyword">new</span> UserInterceptor());<br>        <span class="hljs-comment">// 为拦截器设置拦截路径 和 不需要拦截路径</span><br>        interceptorRegistration.addPathPatterns(<span class="hljs-string">&quot;/user/**&quot;</span>);<span class="hljs-comment">// 这里表示拦截 /user 路径下的所有请求，包括子路径</span><br>        interceptorRegistration.excludePathPatterns(<span class="hljs-string">&quot;/user/login&quot;</span>, <span class="hljs-string">&quot;/user/info&quot;</span>, <span class="hljs-string">&quot;/user/error&quot;</span>);<span class="hljs-comment">// 配置不拦截的路径</span><br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+<h3 id="四、测试"><a href="#四、测试" class="headerlink" title="四、测试"></a>四、测试</h3><p>未登录</p>
+<p><img src="https://cdn.jsdelivr.net/gh/yechen-ops/image-hosting@master/20211002/image-20210830112744348.579244ed3t00.png" srcset="/img/loading.gif" lazyload alt="未登录访问 info"></p>
+<p>访问 /user/detail 路径，被拦截后重定向到 /user/error</p>
+<p><img src="https://cdn.jsdelivr.net/gh/yechen-ops/image-hosting@master/20211002/image-20210830112900176.38miri13yqa0.png" srcset="/img/loading.gif" lazyload alt="未登录访问 detail"></p>
+<p>登录</p>
+<p><img src="https://cdn.jsdelivr.net/gh/yechen-ops/image-hosting@master/20211002/image-20210830112953570.x0vc4izbmj4.png" srcset="/img/loading.gif" lazyload alt="登录"></p>
+<p>访问 /user/detial ，此时 session 中已经有值了，拦截器就放行</p>
+<p><img src="https://cdn.jsdelivr.net/gh/yechen-ops/image-hosting@master/20211002/image-20210830113039839.5kiwkamdpi00.png" srcset="/img/loading.gif" lazyload alt="登录后访问 detail"></p>
 
             </div>
             <hr>
@@ -344,9 +353,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2021/10/02/SpringBoot%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8-2021-10-02-SpringBoot%E4%BD%BF%E7%94%A8%E6%8B%A6%E6%88%AA%E5%99%A8/">
+                      <a href="/2021/10/02/SpringBoot-SpringBoot%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8-2021-10-02-SpringBoot%E6%95%B4%E5%90%88logback/">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">SpringBoot使用拦截器</span>
+                        <span class="hidden-mobile">SpringBoot整合logback</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -354,8 +363,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2021/10/02/SpringBoot%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8-2021-10-02-SpringBoot%E6%9B%B4%E6%8D%A2%E5%90%AF%E5%8A%A8logo/">
-                        <span class="hidden-mobile">SpringBoot更换启动logo</span>
+                      <a href="/2021/10/02/SpringBoot-SpringBoot%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8-2021-10-02-SpringBoot%E8%AE%BE%E7%BD%AE%E5%AD%97%E7%AC%A6%E7%BC%96%E7%A0%81/">
+                        <span class="hidden-mobile">SpringBoot设置字符编码</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

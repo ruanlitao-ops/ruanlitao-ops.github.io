@@ -18,7 +18,7 @@
   <meta name="author" content="叶尘">
   <meta name="keywords" content="">
   
-  <title>SpringBoot使用拦截器 - 叶尘的技术升级小木屋</title>
+  <title>1、Spring与SpringBoot - 叶尘的技术升级小木屋</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" />
 
@@ -219,7 +219,7 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="SpringBoot使用拦截器">
+            <span class="h2" id="subtitle" title="1、Spring与SpringBoot">
               
             </span>
 
@@ -234,8 +234,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2021-10-02 13:51" pubdate>
-        星期六, 十月 2日 2021, 1:51 下午
+      <time datetime="2021-10-04 22:43" pubdate>
+        星期一, 十月 4日 2021, 10:43 晚上
       </time>
     </span>
   
@@ -246,7 +246,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      454 字
+      747 字
     </span>
   
 
@@ -256,7 +256,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      6
+      10
        分钟
     </span>
   
@@ -294,29 +294,146 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">SpringBoot使用拦截器</h1>
+            <h1 style="display: none">1、Spring与SpringBoot</h1>
             
             <div class="markdown-body">
-              <h3 id="一、写一个简单控制器"><a href="#一、写一个简单控制器" class="headerlink" title="一、写一个简单控制器"></a>一、写一个简单控制器</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@RestController</span><br><span class="hljs-meta">@RequestMapping(&quot;/user&quot;)</span><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">UserController</span> </span>&#123;<br><br>    <span class="hljs-comment">// 登录方法，不被拦截</span><br>    <span class="hljs-meta">@RequestMapping(&quot;/login&quot;)</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> User <span class="hljs-title">login</span><span class="hljs-params">(HttpSession session)</span> </span>&#123;<br>        User user = <span class="hljs-keyword">new</span> User();<br>        user.setName(<span class="hljs-string">&quot;张三&quot;</span>);<br>        user.setAge(<span class="hljs-number">20</span>);<br><br>        <span class="hljs-comment">// 将 user 对象放入 session 中</span><br>        session.setAttribute(<span class="hljs-string">&quot;user&quot;</span>, user);<br>        <span class="hljs-keyword">return</span> user;<br>    &#125;<br><br>    <span class="hljs-comment">// 登录后才能访问</span><br>    <span class="hljs-meta">@RequestMapping(&quot;/detail&quot;)</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">detail</span><span class="hljs-params">()</span> </span>&#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;登录成功，这里是主页信息&quot;</span>;<br>    &#125;<br><br>    <span class="hljs-comment">// 登录前就可以访问</span><br>    <span class="hljs-meta">@RequestMapping(&quot;info&quot;)</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">info</span><span class="hljs-params">()</span> </span>&#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;欢迎访问本站！&quot;</span>;<br>    &#125;<br><br>    <span class="hljs-comment">// 被拦截后的请求访问的路径</span><br>    <span class="hljs-meta">@RequestMapping(&quot;/error&quot;)</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">error</span><span class="hljs-params">()</span> </span>&#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;请先登录在操作&quot;</span>;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
-
-
-
-<h3 id="二、编写拦截器，实现-HandlerInterceptor-接口"><a href="#二、编写拦截器，实现-HandlerInterceptor-接口" class="headerlink" title="二、编写拦截器，实现 HandlerInterceptor 接口"></a>二、编写拦截器，实现 HandlerInterceptor 接口</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">UserInterceptor</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">HandlerInterceptor</span> </span>&#123;<br><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">preHandle</span><span class="hljs-params">(HttpServletRequest request, HttpServletResponse response, Object handler)</span> <span class="hljs-keyword">throws</span> Exception </span>&#123;<br><br>        System.out.println(<span class="hljs-string">&quot;开始拦截请求：&quot;</span>+request.getServletPath());<br>        Object user = request.getSession().getAttribute(<span class="hljs-string">&quot;user&quot;</span>);<br>        <span class="hljs-keyword">if</span> (user != <span class="hljs-keyword">null</span>) &#123;<br>            <span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span>;<br>        &#125;<br>        <span class="hljs-comment">// 当 session 中没有值的时候，就拦截，并重定向到 /user/error 路径</span><br>        response.sendRedirect(request.getContextPath() + <span class="hljs-string">&quot;/user/error&quot;</span>);<br>        <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;<br>    &#125;<br><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">postHandle</span><span class="hljs-params">(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView)</span> <span class="hljs-keyword">throws</span> Exception </span>&#123;<br>        HandlerInterceptor.<span class="hljs-keyword">super</span>.postHandle(request, response, handler, modelAndView);<br>    &#125;<br><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">afterCompletion</span><span class="hljs-params">(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex)</span> <span class="hljs-keyword">throws</span> Exception </span>&#123;<br>        HandlerInterceptor.<span class="hljs-keyword">super</span>.afterCompletion(request, response, handler, ex);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
-
-
-
-<h3 id="三、编写拦截器配置类"><a href="#三、编写拦截器配置类" class="headerlink" title="三、编写拦截器配置类"></a>三、编写拦截器配置类</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Configuration</span><span class="hljs-comment">// 定义一个配置类</span><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">UserInterceptorConfig</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">WebMvcConfigurer</span> </span>&#123;<br>    <span class="hljs-comment">// 重写该方法，添加拦截器</span><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">addInterceptors</span><span class="hljs-params">(InterceptorRegistry registry)</span> </span>&#123;<br>        <span class="hljs-comment">// 注册拦截器</span><br>        InterceptorRegistration interceptorRegistration = registry.addInterceptor(<span class="hljs-keyword">new</span> UserInterceptor());<br>        <span class="hljs-comment">// 为拦截器设置拦截路径 和 不需要拦截路径</span><br>        interceptorRegistration.addPathPatterns(<span class="hljs-string">&quot;/user/**&quot;</span>);<span class="hljs-comment">// 这里表示拦截 /user 路径下的所有请求，包括子路径</span><br>        interceptorRegistration.excludePathPatterns(<span class="hljs-string">&quot;/user/login&quot;</span>, <span class="hljs-string">&quot;/user/info&quot;</span>, <span class="hljs-string">&quot;/user/error&quot;</span>);<span class="hljs-comment">// 配置不拦截的路径</span><br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
-
-
-
-<h3 id="四、测试"><a href="#四、测试" class="headerlink" title="四、测试"></a>四、测试</h3><p>未登录</p>
-<p><img src="https://cdn.jsdelivr.net/gh/yechen-ops/image-hosting@master/20211002/image-20210830112744348.579244ed3t00.png" srcset="/img/loading.gif" lazyload alt="未登录访问 info"></p>
-<p>访问 /user/detail 路径，被拦截后重定向到 /user/error</p>
-<p><img src="https://cdn.jsdelivr.net/gh/yechen-ops/image-hosting@master/20211002/image-20210830112900176.38miri13yqa0.png" srcset="/img/loading.gif" lazyload alt="未登录访问 detail"></p>
-<p>登录</p>
-<p><img src="https://cdn.jsdelivr.net/gh/yechen-ops/image-hosting@master/20211002/image-20210830112953570.x0vc4izbmj4.png" srcset="/img/loading.gif" lazyload alt="登录"></p>
-<p>访问 /user/detial ，此时 session 中已经有值了，拦截器就放行</p>
-<p><img src="https://cdn.jsdelivr.net/gh/yechen-ops/image-hosting@master/20211002/image-20210830113039839.5kiwkamdpi00.png" srcset="/img/loading.gif" lazyload alt="登录后访问 detail"></p>
+              <h2 id="一、Spring-能做什么"><a href="#一、Spring-能做什么" class="headerlink" title="一、Spring 能做什么"></a>一、Spring 能做什么</h2><h3 id="1-1-Spring-的能力"><a href="#1-1-Spring-的能力" class="headerlink" title="1.1 Spring 的能力"></a>1.1 Spring 的能力</h3><p><img src="https://cdn.jsdelivr.net/gh/yechen-ops/image-hosting@master/20211002/image.1pkjewlxiif4.png" srcset="/img/loading.gif" lazyload alt="Spring 可以做什么"></p>
+<h3 id="1-2-Spring-的生态"><a href="#1-2-Spring-的生态" class="headerlink" title="1.2 Spring 的生态"></a>1.2 Spring 的生态</h3><p><a target="_blank" rel="noopener" href="https://spring.io/projects/spring-boot">https://spring.io/projects/spring-boot</a></p>
+<p>覆盖了：</p>
+<p>web开发</p>
+<p>数据访问</p>
+<p>安全控制</p>
+<p>分布式</p>
+<p>消息服务</p>
+<p>移动开发</p>
+<p>批处理</p>
+<p>……</p>
+<h3 id="1-3-Spring5-重大升级"><a href="#1-3-Spring5-重大升级" class="headerlink" title="1.3 Spring5 重大升级"></a>1.3 Spring5 重大升级</h3><h4 id="1-3-1-响应式编程"><a href="#1-3-1-响应式编程" class="headerlink" title="1.3.1 响应式编程"></a>1.3.1 响应式编程</h4><p><a target="_blank" rel="noopener" href="https://spring.io/reactive">https://spring.io/reactive</a></p>
+<p><img src="https://cdn.jsdelivr.net/gh/yechen-ops/image-hosting@master/20211002/image.242asujobef4.png" srcset="/img/loading.gif" lazyload alt="响应式编程"></p>
+<h4 id="1-3-2-内部源码设计"><a href="#1-3-2-内部源码设计" class="headerlink" title="1.3.2 内部源码设计"></a>1.3.2 内部源码设计</h4><p>基于 Java8 的一些新特性，如：接口默认实现。重新设计源码架构。</p>
+<h2 id="二、为什么用-SpringBoot"><a href="#二、为什么用-SpringBoot" class="headerlink" title="二、为什么用 SpringBoot"></a>二、为什么用 SpringBoot</h2><p>Spring Boot makes it easy to create stand-alone, production-grade Spring based Applications that you can “just run”.</p>
+<p>能快速创建出生产级别的Spring应用</p>
+<h3 id="2-1-SpringBoot-优点"><a href="#2-1-SpringBoot-优点" class="headerlink" title="2.1 SpringBoot 优点"></a>2.1 SpringBoot 优点</h3><ul>
+<li><p><strong>Create stand-alone Spring applications</strong></p>
+</li>
+<li><ul>
+<li>创建独立 Spring 应用</li>
+</ul>
+</li>
+<li><p><strong>Embed Tomcat, Jetty or Undertow directly (no need to deploy WAR files)</strong></p>
+</li>
+<li><ul>
+<li>内嵌 web 服务器</li>
+</ul>
+</li>
+<li><p><strong>Provide opinionated ‘starter’ dependencies to simplify your build configuration</strong></p>
+</li>
+<li><ul>
+<li>自动 starter 依赖，简化构建配置</li>
+</ul>
+</li>
+<li><p><strong>Automatically configure Spring and 3rd party libraries whenever possible</strong></p>
+</li>
+<li><ul>
+<li>自动配置 Spring 以及第三方功能</li>
+</ul>
+</li>
+<li><p><strong>Provide production-ready features such as metrics, health checks, and externalized configuration</strong></p>
+</li>
+<li><ul>
+<li>提供生产级别的监控、健康检查及外部化配置</li>
+</ul>
+</li>
+<li><p><strong>Absolutely no code generation and no requirement for XML configuration</strong></p>
+</li>
+<li><ul>
+<li>无代码生成、无需编写 XML</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>SpringBoot 是整合 Spring 技术栈的一站式框架</p>
+<p>SpringBoot 是简化 Spring 技术栈的快速开发脚手架</p>
+</blockquote>
+<h3 id="2-2-SpringBoot-缺点"><a href="#2-2-SpringBoot-缺点" class="headerlink" title="2.2 SpringBoot 缺点"></a>2.2 SpringBoot 缺点</h3><ul>
+<li>人称版本帝，<strong>迭代快</strong>，需要时刻关注变化</li>
+<li><strong>封装太深，内部原理复杂</strong>，不容易精通</li>
+</ul>
+<h2 id="三、时代背景"><a href="#三、时代背景" class="headerlink" title="三、时代背景"></a>三、时代背景</h2><h3 id="3-1-微服务"><a href="#3-1-微服务" class="headerlink" title="3.1 微服务"></a>3.1 微服务</h3><p><a target="_blank" rel="noopener" href="https://martinfowler.com/articles/microservices.html">James Lewis and Martin Fowler (2014)</a>  提出微服务完整概念。<a target="_blank" rel="noopener" href="https://martinfowler.com/microservices/">https://martinfowler.com/microservices/</a></p>
+<blockquote>
+<p>In short, the <strong>microservice architectural style</strong> is an approach to developing a single application as a <strong>suite of small services</strong>, each <strong>running in its own process</strong> and communicating with <strong>lightweight</strong> mechanisms, often an <strong>HTTP</strong> resource API. These services are <strong>built around business capabilities</strong> and <strong>independently deployable</strong> by fully <strong>automated deployment</strong> machinery. There is a <strong>bare minimum of centralized management</strong> of these services, which may be <strong>written in different programming languages</strong> and use different data storage technologies.– <a target="_blank" rel="noopener" href="https://martinfowler.com/articles/microservices.html">James Lewis and Martin Fowler (2014)</a></p>
+</blockquote>
+<ul>
+<li><p>微服务是一种架构风格</p>
+</li>
+<li><p>一个应用拆分为一组小型服务</p>
+</li>
+<li><p>每个服务运行在自己的进程内，也就是可独立部署和升级</p>
+</li>
+<li><p>服务之间使用轻量级 HTTP 交互</p>
+</li>
+<li><p>服务围绕业务功能拆分</p>
+</li>
+<li><p>可以由全自动部署机制独立部署</p>
+</li>
+<li><p>去中心化，服务自治，服务可以使用不同的语言、不同的存储技术</p>
+</li>
+</ul>
+<h3 id="3-2-分布式"><a href="#3-2-分布式" class="headerlink" title="3.2 分布式"></a>3.2 分布式</h3><p><img src="https://cdn.nlark.com/yuque/0/2020/png/1613913/1599562347965-a617a866-4270-44e9-9c5b-ced552683eda.png?x-oss-process=image/watermark,type_d3F5LW1pY3JvaGVp,size_14,text_YXRndWlndS5jb20g5bCa56GF6LC3,color_FFFFFF,shadow_50,t_80,g_se,x_10,y_10/watermark,type_d3F5LW1pY3JvaGVp,size_37,text_YXRndWlndS5jb20g5bCa56GF6LC3,color_FFFFFF,shadow_50,t_80,g_se,x_10,y_10" srcset="/img/loading.gif" lazyload alt="分布式"></p>
+<h4 id="3-2-1-分布式的困难"><a href="#3-2-1-分布式的困难" class="headerlink" title="3.2.1 分布式的困难"></a>3.2.1 分布式的困难</h4><ul>
+<li><p>远程调用</p>
+</li>
+<li><p>服务发现</p>
+</li>
+<li><p>负载均衡</p>
+</li>
+<li><p>服务容错</p>
+</li>
+<li><p>配置管理</p>
+</li>
+<li><p>服务监控</p>
+</li>
+<li><p>链路追踪</p>
+</li>
+<li><p>日志管理</p>
+</li>
+<li><p>任务调度</p>
+</li>
+<li><p>……</p>
+</li>
+</ul>
+<h4 id="3-2-2-分布式的解决"><a href="#3-2-2-分布式的解决" class="headerlink" title="3.2.2 分布式的解决"></a>3.2.2 分布式的解决</h4><ul>
+<li>SpringBoot + SpringCloud</li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/yechen-ops/image-hosting@master/20211002/image.2r64gmrvfdg0.png" srcset="/img/loading.gif" lazyload alt="SpringBoot + SpringCloud"></p>
+<h3 id="3-3-云原生"><a href="#3-3-云原生" class="headerlink" title="3.3 云原生"></a>3.3 云原生</h3><p>原生应用如何上云。 Cloud Native</p>
+<h4 id="3-3-1-上云的困难"><a href="#3-3-1-上云的困难" class="headerlink" title="3.3.1 上云的困难"></a>3.3.1 上云的困难</h4><ul>
+<li><p>服务自愈</p>
+</li>
+<li><p>弹性伸缩</p>
+</li>
+<li><p>服务隔离</p>
+</li>
+<li><p>自动化部署</p>
+</li>
+<li><p>灰度发布</p>
+</li>
+<li><p>流量治理</p>
+</li>
+<li><p>……</p>
+</li>
+</ul>
+<h4 id="3-3-2-上云的解决"><a href="#3-3-2-上云的解决" class="headerlink" title="3.3.2 上云的解决"></a>3.3.2 上云的解决</h4><p><img src="https://cdn.nlark.com/yuque/0/2020/png/1613913/1599563498261-8b0b4d86-bd9b-49a3-aefc-89696a375dcb.png?x-oss-process=image/watermark,type_d3F5LW1pY3JvaGVp,size_14,text_YXRndWlndS5jb20g5bCa56GF6LC3,color_FFFFFF,shadow_50,t_80,g_se,x_10,y_10/watermark,type_d3F5LW1pY3JvaGVp,size_29,text_YXRndWlndS5jb20g5bCa56GF6LC3,color_FFFFFF,shadow_50,t_80,g_se,x_10,y_10" srcset="/img/loading.gif" lazyload alt="课程体系"></p>
+<p>课程链接：<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV13Q4y1C7hS">https://www.bilibili.com/video/BV13Q4y1C7hS</a></p>
+<p>课件地址：<a target="_blank" rel="noopener" href="https://www.yuque.com/leifengyang/oncloud">https://www.yuque.com/leifengyang/oncloud</a></p>
+<h2 id="四、如何学习SpringBoot"><a href="#四、如何学习SpringBoot" class="headerlink" title="四、如何学习SpringBoot"></a>四、如何学习SpringBoot</h2><h3 id="4-1-官网文档"><a href="#4-1-官网文档" class="headerlink" title="4.1 官网文档"></a>4.1 官网文档</h3><p>文档地址：<a target="_blank" rel="noopener" href="https://docs.spring.io/spring-boot/docs/current/reference/html/">https://docs.spring.io/spring-boot/docs/current/reference/html/</a></p>
+<p><strong>参考文档：</strong></p>
+<p><img src="https://cdn.jsdelivr.net/gh/yechen-ops/image-hosting@master/20211002/image.5c9n3o30g2c0.png" srcset="/img/loading.gif" lazyload alt="官方文档架构"></p>
+<p><strong>参考文档的附录：</strong></p>
+<p><img src="https://cdn.jsdelivr.net/gh/yechen-ops/image-hosting@master/20211002/image.bq89qb9415s.png" srcset="/img/loading.gif" lazyload alt="参考文档的附录"></p>
+<p><strong>查看版本新特性；</strong></p>
+<p>地址：<a target="_blank" rel="noopener" href="https://github.com/spring-projects/spring-boot/wiki#release-notes">https://github.com/spring-projects/spring-boot/wiki#release-notes</a></p>
+<p><img src="https://cdn.jsdelivr.net/gh/yechen-ops/image-hosting@master/20211002/image.77fiuuqoo140.png" srcset="/img/loading.gif" lazyload alt="查看新版本"></p>
 
             </div>
             <hr>
@@ -328,7 +445,7 @@
                     
                       <a class="hover-with-bg" href="/categories/SpringBoot/">SpringBoot</a>
                     
-                      <a class="hover-with-bg" href="/categories/SpringBoot/SpringBoot%E7%9A%84%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8/">SpringBoot的简单使用</a>
+                      <a class="hover-with-bg" href="/categories/SpringBoot/SpringBoot%E5%85%A5%E9%97%A8/">SpringBoot入门</a>
                     
                   </div>
                 
@@ -353,9 +470,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2021/10/02/SpringBoot%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8-2021-10-02-SpringBoot%E6%95%B4%E5%90%88logback/">
+                      <a href="/2021/10/04/SpringBoot-SpringBoot%E5%85%A5%E9%97%A8-2021-10-04-2%E3%80%81SpringBoot%E5%85%A5%E9%97%A8%E7%A8%8B%E5%BA%8F/">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">SpringBoot整合logback</span>
+                        <span class="hidden-mobile">2、SpringBoot入门程序</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -363,8 +480,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2021/10/02/SpringBoot%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8-2021-10-02-SpringBoot%E8%AE%BE%E7%BD%AE%E5%AD%97%E7%AC%A6%E7%BC%96%E7%A0%81/">
-                        <span class="hidden-mobile">SpringBoot设置字符编码</span>
+                      <a href="/2021/10/02/%E5%89%8D%E7%AB%AF-Vue-2021-10-02-Vue%E8%84%9A%E6%89%8B%E6%9E%B6/">
+                        <span class="hidden-mobile">Vue脚手架</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
