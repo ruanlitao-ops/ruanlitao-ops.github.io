@@ -300,9 +300,9 @@
               <h3 id="一、Servlet-规范介绍："><a href="#一、Servlet-规范介绍：" class="headerlink" title="一、Servlet 规范介绍："></a>一、Servlet 规范介绍：</h3><ol>
 <li>Servlet 规范来自于 JavaEE 规范中的一种。</li>
 <li><strong>作用：</strong><ol>
-<li>在 Servlet 规范中，指定 ==动态资源文件的开发步骤==。</li>
-<li>在 Servlet 规范中，指定 ==Http 服务器调用动态资源文件的规则==。</li>
-<li>在 Servlet 规范中，指定 ==Http 服务器管理动态资源文件实例对象的规则==。</li>
+<li>在 Servlet 规范中，指定 <strong>动态资源文件的开发步骤</strong>。</li>
+<li>在 Servlet 规范中，指定 <strong>Http 服务器调用动态资源文件的规则</strong>。</li>
+<li>在 Servlet 规范中，指定 <strong>Http 服务器管理动态资源文件实例对象的规则</strong>。</li>
 </ol>
 </li>
 </ol>
@@ -315,7 +315,7 @@
 
 
 
-<h3 id="三、Servlet接口实现类开发步骤："><a href="#三、Servlet接口实现类开发步骤：" class="headerlink" title="三、Servlet接口实现类开发步骤："></a>三、Servlet接口实现类开发步骤：</h3><p>==第一步==：创建一个 java 类继承于 <code>HttpServlet</code> 父类，使之成为一个 Servlet 接口的实现类。</p>
+<h3 id="三、Servlet接口实现类开发步骤："><a href="#三、Servlet接口实现类开发步骤：" class="headerlink" title="三、Servlet接口实现类开发步骤："></a>三、Servlet接口实现类开发步骤：</h3><p><strong>第一步</strong>：创建一个 java 类继承于 <code>HttpServlet</code> 父类，使之成为一个 Servlet 接口的实现类。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> cn.yechen;<br><br><span class="hljs-keyword">import</span> javax.servlet.http.HttpServlet;<br><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyServlet</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">HttpServlet</span> </span>&#123;<br>    <br>&#125;<br></code></pre></td></tr></table></figure>
 
 <blockquote>
@@ -325,10 +325,10 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">Servlet</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">init</span><span class="hljs-params">(ServletConfig var1)</span> <span class="hljs-keyword">throws</span> ServletException</span>;<br><br>    <span class="hljs-function">ServletConfig <span class="hljs-title">getServletConfig</span><span class="hljs-params">()</span></span>;<br><br>    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">service</span><span class="hljs-params">(ServletRequest var1, ServletResponse var2)</span> <span class="hljs-keyword">throws</span> ServletException, IOException</span>;<br><br>    <span class="hljs-function">String <span class="hljs-title">getServletInfo</span><span class="hljs-params">()</span></span>;<br><br>    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">destroy</span><span class="hljs-params">()</span></span>;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <p>只有 <code>service()</code> 方法对于 Servlet 接口实现类有用，别的没有用，所以通过抽象类 <code>GenericServlet</code> 实现 Servlet 接口，将不使用的方法加以实现，再使用 抽象类<code>HttpServlet</code> 继承于  GenericServlet ,  降低接口实现类对接口实现的难度，将接口中不需要使用的抽象方法交给抽象类进行完成，这样接口实现类只需要对接口需要方法进行重写。</p>
-<p>==第二步==：<strong>重写HttpServlet父类两个方法。doGet 或者 doPost</strong></p>
+<p><strong>第二步</strong>：<strong>重写HttpServlet父类两个方法。doGet 或者 doPost</strong></p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> cn.yechen;<br><br><span class="hljs-keyword">import</span> javax.servlet.ServletException;<br><span class="hljs-keyword">import</span> javax.servlet.http.HttpServlet;<br><span class="hljs-keyword">import</span> javax.servlet.http.HttpServletRequest;<br><span class="hljs-keyword">import</span> javax.servlet.http.HttpServletResponse;<br><span class="hljs-keyword">import</span> java.io.IOException;<br><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyServlet</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">HttpServlet</span> </span>&#123;<br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title">doGet</span><span class="hljs-params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="hljs-keyword">throws</span> ServletException, IOException </span>&#123;<br>        System.out.println(<span class="hljs-string">&quot;MyServlet 类针对浏览器发送 GET 请求方式处理&quot;</span>);<br>    &#125;<br><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title">doPost</span><span class="hljs-params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="hljs-keyword">throws</span> ServletException, IOException </span>&#123;<br>        System.out.println(<span class="hljs-string">&quot;MyServlet 类针对浏览器发送 POST 请求方式处理&quot;</span>);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
-<p>==第三步==<strong>：将Servlet接口实现类信息【注册】到Tomcat服务器</strong></p>
+<p><strong>第三步****：将Servlet接口实现类信息【注册】到Tomcat服务器</strong></p>
 <p>设置 <code>webapp</code> 目录下的 <code>web.xml</code> 文件：</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-meta">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">web-app</span> <span class="hljs-attr">xmlns</span>=<span class="hljs-string">&quot;http://xmlns.jcp.org/xml/ns/javaee&quot;</span></span><br><span class="hljs-tag">         <span class="hljs-attr">xmlns:xsi</span>=<span class="hljs-string">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span></span><br><span class="hljs-tag">         <span class="hljs-attr">xsi:schemaLocation</span>=<span class="hljs-string">&quot;http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd&quot;</span></span><br><span class="hljs-tag">         <span class="hljs-attr">version</span>=<span class="hljs-string">&quot;4.0&quot;</span>&gt;</span><br>    <span class="hljs-comment">&lt;!--将Servlet接口实现类类路径地址交给Tomcat--&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">servlet</span>&gt;</span><br>        <span class="hljs-comment">&lt;!--声明一个变量存储servlet接口实现类类路径--&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">servlet-name</span>&gt;</span>myServlet<span class="hljs-tag">&lt;/<span class="hljs-name">servlet-name</span>&gt;</span><br>        <span class="hljs-comment">&lt;!--声明servlet接口实现类类路径--&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">servlet-class</span>&gt;</span>cn.yechen.MyServlet<span class="hljs-tag">&lt;/<span class="hljs-name">servlet-class</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">servlet</span>&gt;</span><br>    <span class="hljs-comment">&lt;!--为了降低用户访问Servlet接口实现类难度，需要设置简短请求别名--&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">servlet-mapping</span>&gt;</span><br><br>        <span class="hljs-tag">&lt;<span class="hljs-name">servlet-name</span>&gt;</span>myServlet<span class="hljs-tag">&lt;/<span class="hljs-name">servlet-name</span>&gt;</span><br>        <span class="hljs-comment">&lt;!--设置简短请求别名,别名在书写时必须以&quot;/&quot;为开头--&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">url-pattern</span>&gt;</span>/myServlet<span class="hljs-tag">&lt;/<span class="hljs-name">url-pattern</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">servlet-mapping</span>&gt;</span><br><br><span class="hljs-tag">&lt;/<span class="hljs-name">web-app</span>&gt;</span><br></code></pre></td></tr></table></figure>
 
@@ -338,9 +338,9 @@
 <h3 id="四、Servlet-的生命周期"><a href="#四、Servlet-的生命周期" class="headerlink" title="四、Servlet 的生命周期"></a>四、Servlet 的生命周期</h3><ol>
 <li><p> <strong>网站中所有的 Servlet 接口实现类的实例对象，只能由Http服务器负责创建。</strong>开发人员不能手动创建Servlet接口实现类的实例对象。</p>
 </li>
-<li><p>在==默认==的情况下，Http 服务器接收到<strong>对于当前 Servlet 接口实现类第一次请求时自动创建这个Servlet接口实现类的实例对象</strong>。</p>
+<li><p>在<strong>默认</strong>的情况下，Http 服务器接收到<strong>对于当前 Servlet 接口实现类第一次请求时自动创建这个Servlet接口实现类的实例对象</strong>。</p>
 </li>
-<li><p>在==手动配置==情况下，可以要求Http服务器在启动时自动创建某个 Servlet 接口实现类的实例对象。</p>
+<li><p>在<strong>手动配置</strong>情况下，可以要求Http服务器在启动时自动创建某个 Servlet 接口实现类的实例对象。</p>
 </li>
 </ol>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-comment">&lt;!--在 web.xml 文件中设置--&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">servlet</span>&gt;</span><br>    <span class="hljs-comment">&lt;!--通知Tomcat在启动时负责创建TwoServlet实例对象--&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">load-on-startup</span>&gt;</span>1<span class="hljs-tag">&lt;/<span class="hljs-name">load-on-startup</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">servlet</span>&gt;</span><br></code></pre></td></tr></table></figure>
@@ -371,7 +371,7 @@
 <li><code>HttpServletResponse</code> 接口来自于 Servlet 规范中，在Tomcat 中存在于 servlet-api.jar。</li>
 <li>HttpServletResponse 接口实现类由 Http 服务器负责提供。</li>
 <li>HttpServletResponse 接口负责将 doGet/doPost 方法执行结果写入到【响应体】交给浏览器。</li>
-<li>开发人员习惯于将 HttpServletResponse 接口修饰的对象称为==响应对象==</li>
+<li>开发人员习惯于将 HttpServletResponse 接口修饰的对象称为<strong>响应对象</strong></li>
 </ul>
 </li>
 <li><p><strong>主要功能:</strong></p>
@@ -414,7 +414,7 @@
 <li><code>HttpServletRequest</code> 接口来自于 Servlet 规范中，在 Tomcat 中存在 servlet-api.jar。</li>
 <li>HttpServletRequest 接口实现类由 Http 服务器负责提供。</li>
 <li>HttpServletRequest 接口负责在 doGet/doPost 方法运行时<strong>读取Http请求协议包中信息</strong>。</li>
-<li>开发人员习惯于将HttpServletRequest接口修饰的对象称为==请求对象==</li>
+<li>开发人员习惯于将HttpServletRequest接口修饰的对象称为<strong>请求对象</strong></li>
 </ul>
 </li>
 <li><strong>作用:</strong></li>
@@ -468,7 +468,7 @@
 <li><p><strong>介绍:</strong></p>
 <ul>
 <li>由<strong>三位数字组成</strong>的一个符号。</li>
-<li>Http 服务器在推送响应包之前，根据本次请求处理情况将 Http ==状态码写入到响应包中状态行上==。</li>
+<li>Http 服务器在推送响应包之前，根据本次请求处理情况将 Http <strong>状态码写入到响应包中状态行上</strong>。</li>
 <li>通过返回的状态码，浏览器可以可以输出不同结果：<ul>
 <li>如果 Http 服务器针对本次请求，<strong>返回了</strong>对应的资源文件，<strong>就通过 Http 状态码通知浏览器应该如何处理这个结果。</strong></li>
 <li>如果 Http 服务器针对本次请求，<strong>无法返回</strong>对应的资源文件，<strong>就通过 Http 状态码向浏览器解释不能提供服务的原因。</strong></li>
@@ -478,11 +478,11 @@
 </li>
 <li><p><strong>组成：100—599；分为5个大类</strong></p>
 </li>
-<li><p><strong>1XX：</strong>最有特征是是 <code>100</code> ，==通知浏览器本次返回的资源文件并不是一个独立的资源文件==，需要浏览器在接收响应包之后，继续向 Http 服务器索要依赖的其他资源文件</p>
+<li><p><strong>1XX：</strong>最有特征是是 <code>100</code> ，<strong>通知浏览器本次返回的资源文件并不是一个独立的资源文件</strong>，需要浏览器在接收响应包之后，继续向 Http 服务器索要依赖的其他资源文件</p>
 </li>
-<li><p><strong>2XX：</strong>最有特征 <code>200</code> ， ==通知浏览器本次返回的资源文件是一个完整独立资源文件==，浏览器在接收到之后不需要所要其他关联文件。</p>
+<li><p><strong>2XX：</strong>最有特征 <code>200</code> ， <strong>通知浏览器本次返回的资源文件是一个完整独立资源文件</strong>，浏览器在接收到之后不需要所要其他关联文件。</p>
 </li>
-<li><p><strong>3XX：</strong> 最有特征 <code>302</code> ，==通知浏览器本次返回的不是一个资源文件内容而是一个资源文件地址==，需要浏览器根据这个地址自动发起请求来索要这个资源文件。</p>
+<li><p><strong>3XX：</strong> 最有特征 <code>302</code> ，<strong>通知浏览器本次返回的不是一个资源文件内容而是一个资源文件地址</strong>，需要浏览器根据这个地址自动发起请求来索要这个资源文件。</p>
 </li>
 </ol>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// 如：</span><br>response.sendRedirect(<span class="hljs-string">&quot;资源文件地址&quot;</span>);<br><span class="hljs-comment">// 写入到响应头中 location</span><br><span class="hljs-comment">// 而这个行为导致Tomcat将302状态码写入到状态行</span><br></code></pre></td></tr></table></figure>
@@ -491,16 +491,16 @@
 
 <p><img src="https://cdn.jsdelivr.net/gh/yechen-ops/image-hosting@master/20210424/image-20210306214424273.4j0ynxpu0a20.png" srcset="/img/loading.gif" lazyload alt="image-20210306214424273"></p>
 <ol start="6">
-<li><p><strong>4XX：</strong> <code>404</code> ，==通知浏览器，由于在服务端没有定位到被访问的资源文件因此无法提供帮助==</p>
-<pre><code>          `405` ， 通知浏览器，在服务端已经定位到被访问的资源文件（Servlet）==但是这个Servlet对于浏览器采用的请求方式不能处理==
-</code></pre>
+<li><p><strong>4XX</strong>：</p>
+<p> <code>404</code> ，<strong>通知浏览器，由于在服务端没有定位到被访问的资源文件因此无法提供帮助</strong></p>
+<p><code>405</code> ， 通知浏览器，在服务端已经定位到被访问的资源文件（Servlet）<strong>但是这个Servlet对于浏览器采用的请求方式不能处理</strong></p>
 </li>
 </ol>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// 只能针对浏览器发送POST请求方式进行处理，无法对GET方式进行处理</span><br><span class="hljs-comment">// 但是浏览器通过地址栏发送的请求一定是 GET，由于该 Servlet 中没有 GET 方法</span><br><span class="hljs-comment">// 因此这个 Servlet 对于浏览器采用的请求方式不能处理</span><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Servlet_405</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">HttpServlet</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title">doPost</span><span class="hljs-params">(HttpServletRequest request, HttpServletResponse response)</span> <span class="hljs-keyword">throws</span> ServletException, IOException </span>&#123;<br><br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <p><img src="https://cdn.jsdelivr.net/gh/yechen-ops/image-hosting@master/20210424/image-20210306215246663.6cbar3vqnjk0.png" srcset="/img/loading.gif" lazyload alt="image-20210306215246663"></p>
 <ol start="7">
-<li><strong>5XX：</strong> <code>500</code> ，通知浏览器，在服务端已经定位到被访问的资源文件（Servlet），这个Servlet可以接收浏览器采用请求方式，==但是Servlet在处理请求期间，由于<strong>Java异常导致</strong>处理失败==</li>
+<li><strong>5XX：</strong> <code>500</code> ，通知浏览器，在服务端已经定位到被访问的资源文件（Servlet），这个Servlet可以接收浏览器采用请求方式，但是Servlet在处理请求期间，由于<strong>Java异常导致</strong>处理失败</li>
 </ol>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Servlet_500</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">HttpServlet</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title">doGet</span><span class="hljs-params">(HttpServletRequest request, HttpServletResponse response)</span> <span class="hljs-keyword">throws</span> ServletException, IOException </span>&#123;<br>        <span class="hljs-comment">// 模拟一个空指针异常</span><br>        Map map = <span class="hljs-keyword">new</span> HashMap();<br>        <span class="hljs-keyword">int</span> i = (<span class="hljs-keyword">int</span>) map.get(<span class="hljs-string">&quot;key&quot;</span>);<br>        System.out.println(i);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
@@ -509,8 +509,8 @@
 <li><strong>前提条件：</strong> 某些来自于浏览器发送请求，往往需要<strong>服务端中多个 Servlet 协同处理</strong>。但是浏览器一次只能访问一个 Servlet，<strong>导致用户需要手动通过浏览器发起多次请求才能得到服务</strong>。这样增加用户获得服务难度，导致用户放弃访问当前网站</li>
 <li><strong>提高用户使用感受规则：</strong>  无论本次请求涉及到多少个Servlet,用户<strong>只需要手动通知浏览器发起 一次请求即可</strong></li>
 <li><strong>多个Servlet之间调用规则：</strong><ol>
-<li>==重定向解决方案==</li>
-<li>==请求转发解决方案==</li>
+<li>重定向解决方案</li>
+<li>请求转发解决方案</li>
 </ol>
 </li>
 </ol>
@@ -527,30 +527,25 @@
 <li><p><strong>特征：</strong>  </p>
 <blockquote>
 <p>（1）请求地址：</p>
-<pre><code>        既可以把当前网站内部的资源文件地址发送给浏览器 （/网站名/资源文件名）
-
-        也可以把其他网站资源文件地址发送给浏览器(http://ip地址:端口号/网站名/资源文件名)         
-</code></pre>
+<p>既可以把当前网站内部的资源文件地址发送给浏览器 （/网站名/资源文件名）</p>
+<p>也可以把其他网站资源文件地址发送给浏览器(<a href="http://ip地址:端口号/网站名/资源文件名">http://ip地址:端口号/网站名/资源文件名</a>)         </p>
 </blockquote>
 <blockquote>
 <p>（2）请求次数：</p>
-<pre><code>        浏览器至少发送两次请求，但是只有第一次请求是用户手动发送。后续请求都是浏览器自动发送的。
-</code></pre>
+<p>浏览器至少发送两次请求，但是只有第一次请求是用户手动发送。后续请求都是浏览器自动发送的。</p>
 </blockquote>
 <blockquote>
 <p>（3）请求方式：</p>
-<pre><code>        重定向解决方案中，**通过地址栏通知浏览器发起下一次请求**，因此通过重定向解决方案调用的资源文件接收的请求方式一定是 `GET`
-</code></pre>
+<p>重定向解决方案中，<strong>通过地址栏通知浏览器发起下一次请求</strong>，因此通过重定向解决方案调用的资源文件接收的请求方式一定是 <code>GET</code></p>
 </blockquote>
 <blockquote>
 <p>（4）缺点:</p>
-<pre><code>        重定向解决方案需要在浏览器与服务器之间进行多次往返，**大量时间消耗在往返次数上，增加用户等待服务时间**
-</code></pre>
+<p>重定向解决方案需要在浏览器与服务器之间进行多次往返，<strong>大量时间消耗在往返次数上，增加用户等待服务时间</strong></p>
 </blockquote>
 </li>
 </ol>
 <h3 id="十一、请求转发解决方案"><a href="#十一、请求转发解决方案" class="headerlink" title="十一、请求转发解决方案"></a>十一、请求转发解决方案</h3><ol>
-<li><p><strong>原理：</strong>  用户第一次通过手动方式要求浏览器访问 OneServlet。OneServlet 工作完毕后，==通过当前的请求对象（request）代替浏览器向 Tomcat 发送请求，申请调用 TwoServlet。==Tomcat 在接收到这个请求之后，自动调用 TwoServlet 来完成剩余任务</p>
+<li><p><strong>原理：</strong>  用户第一次通过手动方式要求浏览器访问 OneServlet。OneServlet 工作完毕后，<strong>通过当前的请求对象（request）代替浏览器向 Tomcat 发送请求，申请调用 TwoServlet</strong>。Tomcat 在接收到这个请求之后，自动调用 TwoServlet 来完成剩余任务</p>
 </li>
 <li><p><strong>实现命令：</strong>  </p>
 </li>
@@ -561,28 +556,22 @@
 <li><p><strong>特征：</strong>  </p>
 <blockquote>
 <p>（1）请求次数：</p>
-<pre><code>        在请求转发过程中，浏览器**只发送一次请求**
-</code></pre>
+<p>在请求转发过程中，浏览器<strong>只发送一次请求</strong></p>
 </blockquote>
 <blockquote>
 <p>（2）请求地址：</p>
-<pre><code>        只能向 Tomcat 服务器申请调用**当前网站下资源文件地址**
-       `request.getRequestDispathcer(&quot;/资源文件名&quot;)` 
-
-        ==不要写网站名==
-</code></pre>
+<p>只能向 Tomcat 服务器申请调用<strong>当前网站下资源文件地址</strong></p>
+<p><code>request.getRequestDispathcer(&quot;/资源文件名&quot;)</code> </p>
+<p><strong>不要写网站名</strong>        </p>
 </blockquote>
 <blockquote>
 <p>（3）请求方式：</p>
-<pre><code>        在请求转发过程中，浏览器只发送一个了个 Http 请求协议包。**参与本次请求的所有Servlet共享同一个请求协议包**，因此这些Servlet接收的请求方式与浏览器发送的请求方式保持一致。
-</code></pre>
+<p>在请求转发过程中，浏览器只发送一个了个 Http 请求协议包。<strong>参与本次请求的所有Servlet共享同一个请求协议包</strong>，因此这些Servlet接收的请求方式与浏览器发送的请求方式保持一致。</p>
 </blockquote>
 <blockquote>
 <p>（4）优点：</p>
-<pre><code>        无论本次请求涉及到多少个Servlet,用户只需要手动通过浏览器发送一次请求。
-
-        Servlet 之间调用发生在服务端计算机上，**节省服务端与浏览器之间往返次数增加处理服务速度**
-</code></pre>
+<p>无论本次请求涉及到多少个Servlet,用户只需要手动通过浏览器发送一次请求。</p>
+<p>Servlet 之间调用发生在服务端计算机上，<strong>节省服务端与浏览器之间往返次数增加处理服务速度</strong></p>
 </blockquote>
 </li>
 </ol>
@@ -626,7 +615,7 @@
 <p><strong>全局作用域对象的生命周期贯穿于网站的整个运行期间。</strong></p>
 </blockquote>
 <ol start="4">
-<li><strong>实现命令：</strong>  ==前提是两个 Servlet 存在于一个网站中==</li>
+<li><strong>实现命令：</strong>  前提是两个 Servlet 存在于一个网站中</li>
 </ol>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// 添加数据</span><br>OneServlet &#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">doGet</span><span class="hljs-params">(HttpServletRequest request, HttpServletResponse response)</span> </span>&#123;<br>        <span class="hljs-comment">// 通过 请求对象（request）向 Tomcat 索要当前网站中的 全局作用域对象</span><br>        ServletContext application = request.getServletContext();<br>        <span class="hljs-comment">// 以（“key”，“value”）的形式将数据添加到全局作用域对象中，作为共享数据</span><br>        application.setAttribute(<span class="hljs-string">&quot;key1&quot;</span>, <span class="hljs-string">&quot;values1&quot;</span>);<br>    &#125;<br>&#125;<br><br><span class="hljs-comment">// 获取数据</span><br>TwoServlet &#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">doGet</span><span class="hljs-params">(HttpServletRequest request, HttpServletResponse response)</span> </span>&#123;<br>        <span class="hljs-comment">// 通过 请求对象（request）向 Tomcat 索要当前网站中的 全局作用域对象</span><br>        ServletContext application = request.getServletContext();<br>        <span class="hljs-comment">// 通过 key 获取全局作用域对象中的对应的 value</span><br>        Object value = applicaton.getAttribute(<span class="hljs-string">&quot;key1&quot;</span>);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
@@ -647,7 +636,7 @@
 <p>（4）在现实生活场景中， Cookie 相当于用户在服务端得到【会员卡】</p>
 </blockquote>
 <ol start="2">
-<li><strong>原理：</strong>  用户通过浏览器第一次向 【MyWeb】 网站发送请求申请 OneServlet。==OneServlet在运行期间创建一个Cookie存储与当前用户相关数据==。OneServlet工作完毕后，==将Cookie写入到响应头交还给当前浏览器。浏览器收到响应响应包之后，将cookie存储在浏览器的缓存==。一段时间之后，用户通过【同一个浏览器】再次向【myWeb网站】发送请求申请 TwoServlet 时。==浏览器需要无条件的将myWeb网站之前推送过来的Cookie，写入到请求头发送过去==，此时 TwoServlet 在运行时，就可以通过读取请求头中 cookie 中信息，得到OneServlet提供的共享数据。</li>
+<li><strong>原理：</strong>  用户通过浏览器第一次向 【MyWeb】 网站发送请求申请 OneServlet。<strong>OneServlet在运行期间创建一个Cookie存储与当前用户相关数据</strong>。OneServlet工作完毕后，将Cookie写入到响应头交还给当前浏览器。<strong>浏览器收到响应响应包之后，将cookie存储在浏览器的缓存</strong>。一段时间之后，用户通过【同一个浏览器】再次向【myWeb网站】发送请求申请 TwoServlet 时。<strong>浏览器需要无条件的将myWeb网站之前推送过来的Cookie，写入到请求头发送过去</strong>，此时 TwoServlet 在运行时，就可以通过读取请求头中 cookie 中信息，得到OneServlet提供的共享数据。</li>
 <li><strong>实现命令：</strong>   同一个网站 OneServlet 与  TwoServlet 借助于 Cookie 实现数据共享</li>
 </ol>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><code class="hljs java">OneServlet &#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">doGet</span><span class="hljs-params">(HttpServletRequest request, HttpServletResponse response)</span> </span>&#123;<br>        <span class="hljs-comment">// 创建一个 cookie 对象，保存当前用户的共享数据</span><br>        Cookie cookie1 = <span class="hljs-keyword">new</span> Cookie(<span class="hljs-string">&quot;key1&quot;</span>, <span class="hljs-string">&quot;abc&quot;</span>);<br>        Cookie cookie2 = <span class="hljs-keyword">new</span> Cookie(<span class="hljs-string">&quot;key2&quot;</span>, <span class="hljs-string">&quot;def&quot;</span>);<br>        <span class="hljs-comment">// cookie 相当于一个 map，只能存放键值对，并且键值对的类型只能是 String,键值对中的 key 不能是中文</span><br>        <span class="hljs-comment">// 将 cookie 写入到响应头中，传给浏览器</span><br>        response.addCookie(cookie1);<br>        response.addCookie(cookie2);<br>    &#125;<br>&#125;<br><br><span class="hljs-comment">// OneServlet 执行结束后，将 cookie 信息存储在浏览器的缓存中，当浏览器请求访问 TwoServlet 是，浏览器将缓存中的 cookie 信息取出放入请求包中</span><br><br>TwoServlet &#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">doGet</span><span class="hljs-params">(HttpServletRequest request, HttpServletResponse response)</span> </span>&#123;<br>        <span class="hljs-comment">// 调用请求对象从请求头中得到的浏览器返回的 cookie 对象</span><br>        Cookie[] cookieArray = request.getCookies();<br>        <span class="hljs-comment">// 循环编历数据得到每一个 cookie 的 key 和 value</span><br>        <span class="hljs-keyword">for</span> (Cookie cookie : cookieArray) &#123;<br>            <span class="hljs-comment">// 读取 key</span><br>            String key = cookie.getName();<br>            <span class="hljs-comment">// 读取 value</span><br>            String value = cookie.getValue();<br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
@@ -679,10 +668,10 @@
 <blockquote>
 <p>（1）HttpSession 接口来自于 Serlvet 规范下的一个接口。存在于 Tomcat 中 servlet-api.jar 中。</p>
 <p>（2）如果两个 Servlet 来自于同一个网站，并且为同一个浏览器对象（用户）提供服务，此时借助 HttpSession对象进行数据共享。</p>
-<p>（3）开发人员习惯将 HttpSession 接口修饰的对象称为 ==会话作用域对象==</p>
+<p>（3）开发人员习惯将 HttpSession 接口修饰的对象称为 <strong>会话作用域对象</strong></p>
 </blockquote>
 <ol start="2">
-<li><strong>==面试题== HttpSession 和 Cookie 区别：</strong></li>
+<li><strong>面试题 HttpSession 和 Cookie 区别：</strong></li>
 </ol>
 <ul>
 <li>存储位置：一个在天上，一个在地上<ul>
@@ -699,8 +688,8 @@
 <li>Cookie：一个 Cookie 对象只能存储一个共享数据。</li>
 <li>HttpSession：使用 Map 集合存储共享数据，所以可以存储任意数量的共享数据。</li>
 <li>参照物：<ul>
-<li>Cookie：相当于客户在客户端的 ==会员卡==</li>
-<li>HttpSession：相当于客户在服务端的 ==私人保险柜==</li>
+<li>Cookie：相当于客户在客户端的 <strong>会员卡</strong></li>
+<li>HttpSession：相当于客户在服务端的 <strong>私人保险柜</strong></li>
 </ul>
 </li>
 </ul>
@@ -712,7 +701,7 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs java">OneServlet &#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">doGet</span><span class="hljs-params">(HttpServletReqiest request, HttpServletResponse response)</span> </span>&#123;<br>        <span class="hljs-comment">// 调用请求对象向 Tomcat 索要当前用户在服务端的私人储物柜</span><br>        HttpSession session = request.getSession();<br>        <span class="hljs-comment">// 将数据添加到用户的私人存储柜</span><br>        session.setAttibute(<span class="hljs-string">&quot;key&quot;</span>, <span class="hljs-string">&quot;abc&quot;</span>);<br>    &#125;<br>&#125;<br><br>TwoServlet &#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">doGet</span><span class="hljs-params">(HttpServletReqiest request, HttpServletResponse response)</span> </span>&#123;<br>        <span class="hljs-comment">// 调用请求对象向 Tomcat 索要当前用户在服务端的私人储物柜</span><br>        HttpSession session = request.getSession();<br>        <span class="hljs-comment">// 将数据添加到用户的私人存储柜</span><br>        Object value = session.getAttribute(<span class="hljs-string">&quot;key&quot;</span>);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <ol start="4">
-<li><p><strong>Http 服务器如何将用户与 HttpSession 关联起来：</strong>  ==使用 Cookie==</p>
+<li><p>Http 服务器如何将用户与 HttpSession 关联起来：  <strong>使用 Cookie</strong></p>
 <p>Tomcat 在创建一个 HttpSession 对象的时候，自动为这个 HttpSession 对象生成一个<strong>唯一的编号</strong>， Tomcat 将编号存储为 Cookie 对象，<strong>key 为 JSESSIONID，value 为 唯一编号</strong>，推送到浏览器缓存，当用户第二次来访问的时候，Tomcat 根据请求头中的 JSESSIONID 确认用户是否有 HttpSession，以及哪一个 HttpSession 是当前用户。</p>
 <p><img src="https://cdn.jsdelivr.net/gh/yechen-ops/image-hosting@master/20210424/image-20210310204203874.7ejbzrl4p5g0.png" srcset="/img/loading.gif" lazyload alt="image-20210310204203874"></p>
 </li>
@@ -720,19 +709,19 @@
 <ul>
 <li><p>getSession()：</p>
 <p>如果当前用户在服务端中<strong>已经存在了 HttpSession 对象（私人储物柜）</strong>，要求 Tomcat 将这个私人储物柜进行<strong>返回</strong>。</p>
-<p>如果当前用户在服务端中<strong>尚未有 HttpSession 对象（私人储物柜）</strong>，要求 Tomcat 为当前用户==创建一个全新的 HttpSession 对象并返回==。</p>
+<p>如果当前用户在服务端中<strong>尚未有 HttpSession 对象（私人储物柜）</strong>，要求 Tomcat 为当前用户=创建一个<strong>全新的 HttpSession 对象并返回</strong>。</p>
 </li>
 <li><p>getSession(false)：</p>
 <p>如果当前用户在服务端中<strong>已经存在了 HttpSession 对象（私人储物柜）</strong>，要求 Tomcat 将这个私人储物柜进行<strong>返回</strong>。</p>
-<p>如果当前用户在服务端中<strong>尚未有 HttpSession 对象（私人储物柜）</strong>，==此时该方法返回 null，不会创建新的 HttpSession 对象返回==。</p>
+<p>如果当前用户在服务端中<strong>尚未有 HttpSession 对象（私人储物柜）</strong>，此时该方法返回 null，<strong>不会创建新的 HttpSession 对象返回</strong>。</p>
 </li>
 </ul>
 </li>
-<li><p><strong>HttpSession销毁时机：</strong>  </p>
+<li><p><strong>HttpSession 销毁时机：</strong>  </p>
 <ul>
 <li><p>用户与 HttpSession 关联时使用的 Cookie 只能存放在浏览器的缓存中，在浏览器关闭的时候，缓存删除，Cookie 对象被销毁，用户和 HttpSession 对象之间的联系被切断，由于 Tomcat 无法检测浏览器何时关闭，因此浏览器关闭时 Tomcat 并不会将浏览器关联的 HttpSession 对象销毁。</p>
 </li>
-<li><p>Tomcat 为每一个 HttpSession 对象设置 ==空闲时间==，默认为 <strong>30分钟</strong>，当当前的 HttpSession 对象空闲时间到达 30 分钟，Tomcat 就会销毁这个对象。</p>
+<li><p>Tomcat 为每一个 HttpSession 对象设置 <strong>空闲时间</strong>，默认为 <strong>30分钟</strong>，当当前的 HttpSession 对象空闲时间到达 30 分钟，Tomcat 就会销毁这个对象。</p>
 <ul>
 <li><p><strong>可以自己手动设置 HttpSession 空闲时间：</strong>  </p>
 <p>在当前网站 / webapps / WEB_INFO / web.xml 文件中添加</p>
@@ -761,7 +750,7 @@
 <p>（2）在请求对象实现 Servlet 之间数据共享功能时，开发人员将请求对象称为【<strong>请求作用域对象</strong>】</p>
 </blockquote>
 <ol start="2">
-<li><strong>命令实现：</strong>   OneServlet通过请求转发申请调用TwoServlet时，需要给TwoServlet提供共享数据</li>
+<li><strong>命令实现：</strong>OneServlet 通过请求转发申请调用 TwoServlet 时，需要给 TwoServlet 提供共享数据</li>
 </ol>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs java">OneServlet &#123;<br>	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">doGet</span><span class="hljs-params">(HttpServletRequest request, HttpServletResponse response)</span> </span>&#123;<br>        <span class="hljs-comment">// 将数据添加到【请求作用域对象】中</span><br>        request.setAttribute(<span class="hljs-string">&quot;key&quot;</span>, <span class="hljs-string">&quot;abc&quot;</span>);<br>        <span class="hljs-comment">// 向 Tomcat 申请调用 TwoSevlet</span><br>        request.getRequestDispatcher(<span class="hljs-string">&quot;/two&quot;</span>).forword(request, response);<br>    &#125;    <br>&#125;<br><br>TwoServlet &#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">doGet</span><span class="hljs-params">(HttpServletRequest request, HttpServletResponse response)</span> </span>&#123;<br>        <span class="hljs-comment">// 从当前请求对象得到从 OneServelt 写入的共享数据</span><br>        Object value = request.getAttribute(<span class="hljs-string">&quot;key&quot;</span>);<br>    &#125;  <br>&#125;<br></code></pre></td></tr></table></figure>
 
@@ -778,7 +767,7 @@
 <ol start="2">
 <li><p><strong>作用域对象：</strong>  </p>
 <ul>
-<li>在 Servlet 规范中，认为<strong>在服务端内存中</strong>可以在某些条件下为两个 Servlet 之间提供<strong>数据共享方案的对象</strong>，被称为==作用域对象==。</li>
+<li>在 Servlet 规范中，认为<strong>在服务端内存中</strong>可以在某些条件下为两个 Servlet 之间提供<strong>数据共享方案的对象</strong>，被称为<strong>作用域对象</strong>。</li>
 <li><strong>Servlet规范下作用域对象：</strong><ul>
 <li><code>ServletContext</code> ：全局作用与对象；</li>
 <li><code>HttpSession</code> ：会话作用域对象；</li>
@@ -823,34 +812,35 @@
 <p>（3）Filter 接口在 Http 服务器调用资源文件之前，对 Http 服务器进行拦截。</p>
 </blockquote>
 <ol start="2">
-<li><strong>具体作用：</strong>  <ul>
-<li>==拦截 Http 服务器，帮助 Http 服务器检测当前请求合法性==</li>
-</ul>
-</li>
+<li><strong>具体作用：</strong> </li>
 </ol>
+<ul>
+<li><p><strong>拦截 Http 服务器，帮助 Http 服务器检测当前请求合法性</strong></p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// 编写一个类继承 Filter，重写 doFilter 方法</span><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyFilter</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">Filter</span> </span>&#123;<br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">doFilter</span><span class="hljs-params">(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain)</span> <span class="hljs-keyword">throws</span> IOException, ServletException </span>&#123;<br>        <span class="hljs-comment">// 通过拦截请求对象得到请求包参数信息，从而得到访问用户的真实年龄</span><br>        String age = servletRequest.getParameter(<span class="hljs-string">&quot;age&quot;</span>);<br>        <span class="hljs-comment">// 根据年龄，帮助 Http 服务器来判断本次请求的合法性</span><br>        <span class="hljs-keyword">if</span> (Integer.parseInt(age) &lt;= <span class="hljs-number">75</span>) &#123;<br>            <span class="hljs-comment">// 将拦截的请求对象和相应对象交还给 Tomcat，由 Tomcat 继续调用资源文件</span><br>            filterChain.doFilter(servletRequest, servletResponse);<br>        &#125; <span class="hljs-keyword">else</span> &#123;<br>            <span class="hljs-comment">// 过滤器代替 Http 服务器拒绝本次请求</span><br>            servletResponse.setContentType(<span class="hljs-string">&quot;text/html;charset=utf-8&quot;</span>);<br>            PrintWriter out = servletResponse.getWriter();<br>            out.println(<span class="hljs-string">&quot;&lt;center&gt;&lt;font style=&#x27;color:red;font-size:40px&#x27;&gt;大爷，珍爱生命啊!&lt;/font&gt;&lt;/center&gt;&quot;</span>);<br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
-<p>   将过滤器注册到 <code>web.xml</code> 文件中</p>
-   <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-comment">&lt;!--将过滤器类文件路径交给 Tomcat--&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">filter</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">filter-name</span>&gt;</span>myFilter<span class="hljs-tag">&lt;/<span class="hljs-name">filter-name</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">filter-class</span>&gt;</span>cn.yechen.fliter.MyFilter<span class="hljs-tag">&lt;/<span class="hljs-name">filter-class</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">filter</span>&gt;</span><br><span class="hljs-comment">&lt;!--通知 Tomcat 在调用何种资源文件时需要被当前过滤器拦截--&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">filter-mapping</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">filter-name</span>&gt;</span>myFilter<span class="hljs-tag">&lt;/<span class="hljs-name">filter-name</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">url-pattern</span>&gt;</span>/mm.jpg<span class="hljs-tag">&lt;/<span class="hljs-name">url-pattern</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">filter-mapping</span>&gt;</span><br></code></pre></td></tr></table></figure>
+<p> 将过滤器注册到 <code>web.xml</code> 文件中</p>
+ <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-comment">&lt;!--将过滤器类文件路径交给 Tomcat--&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">filter</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">filter-name</span>&gt;</span>myFilter<span class="hljs-tag">&lt;/<span class="hljs-name">filter-name</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">filter-class</span>&gt;</span>cn.yechen.fliter.MyFilter<span class="hljs-tag">&lt;/<span class="hljs-name">filter-class</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">filter</span>&gt;</span><br><span class="hljs-comment">&lt;!--通知 Tomcat 在调用何种资源文件时需要被当前过滤器拦截--&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">filter-mapping</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">filter-name</span>&gt;</span>myFilter<span class="hljs-tag">&lt;/<span class="hljs-name">filter-name</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">url-pattern</span>&gt;</span>/mm.jpg<span class="hljs-tag">&lt;/<span class="hljs-name">url-pattern</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">filter-mapping</span>&gt;</span><br></code></pre></td></tr></table></figure>
 
 <ul>
-<li>==拦截 Http 服务器，对当前请求进行增强操作==</li>
-</ul>
+<li><p><strong>拦截 Http 服务器，对当前请求进行增强操作</strong></p>
 <p>因为通过 POST 请求方式获取的资源保存在请求体中，请求对象在解析数据的时候默认采用 <code>iso-8859-1</code> ，这是一种东欧字符集，不支持中文。所以每次使用 POST 请求时都要设置请求对象的编码格式，<strong>可以使用过滤器方式对编码方式进行设置，简化代码</strong>。</p>
-<p>   <strong>控制浏览器以 POST 方式发起请求</strong></p>
-   <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">form</span> <span class="hljs-attr">action</span>=<span class="hljs-string">&quot;/myWeb/one&quot;</span> <span class="hljs-attr">method</span>=<span class="hljs-string">&quot;post&quot;</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">table</span> <span class="hljs-attr">align</span>=<span class="hljs-string">&quot;center&quot;</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">tr</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>用户名<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;text&quot;</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;username&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;submit&quot;</span> <span class="hljs-attr">value</span>=<span class="hljs-string">&quot;以 POST 方式提交&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span><br>        <span class="hljs-tag">&lt;/<span class="hljs-name">tr</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">table</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">form</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">form</span> <span class="hljs-attr">action</span>=<span class="hljs-string">&quot;/myWeb/two&quot;</span> <span class="hljs-attr">method</span>=<span class="hljs-string">&quot;post&quot;</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">table</span> <span class="hljs-attr">align</span>=<span class="hljs-string">&quot;center&quot;</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">tr</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>用户名<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;text&quot;</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;username&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;submit&quot;</span> <span class="hljs-attr">value</span>=<span class="hljs-string">&quot;以 POST 方式提交&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span><br>        <span class="hljs-tag">&lt;/<span class="hljs-name">tr</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">table</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">form</span>&gt;</span><br></code></pre></td></tr></table></figure>
+</li>
+<li><p><em>控制浏览器以 POST 方式发起请求</em>*</p>
+</li>
+</ul>
+ <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">form</span> <span class="hljs-attr">action</span>=<span class="hljs-string">&quot;/myWeb/one&quot;</span> <span class="hljs-attr">method</span>=<span class="hljs-string">&quot;post&quot;</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">table</span> <span class="hljs-attr">align</span>=<span class="hljs-string">&quot;center&quot;</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">tr</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>用户名<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;text&quot;</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;username&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;submit&quot;</span> <span class="hljs-attr">value</span>=<span class="hljs-string">&quot;以 POST 方式提交&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span><br>        <span class="hljs-tag">&lt;/<span class="hljs-name">tr</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">table</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">form</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">form</span> <span class="hljs-attr">action</span>=<span class="hljs-string">&quot;/myWeb/two&quot;</span> <span class="hljs-attr">method</span>=<span class="hljs-string">&quot;post&quot;</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">table</span> <span class="hljs-attr">align</span>=<span class="hljs-string">&quot;center&quot;</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">tr</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>用户名<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;text&quot;</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;username&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;submit&quot;</span> <span class="hljs-attr">value</span>=<span class="hljs-string">&quot;以 POST 方式提交&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span><br>        <span class="hljs-tag">&lt;/<span class="hljs-name">tr</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">table</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">form</span>&gt;</span><br></code></pre></td></tr></table></figure>
 
-<p>   <strong>两个 Servlet</strong></p>
-   <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">OneServlet</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">HttpServlet</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title">doPost</span><span class="hljs-params">(HttpServletRequest request, HttpServletResponse response)</span> <span class="hljs-keyword">throws</span> ServletException, IOException </span>&#123;<br>        <span class="hljs-comment">// 直接从【请求对象】中取出请求参数</span><br>        String username = request.getParameter(<span class="hljs-string">&quot;username&quot;</span>);<br>        System.out.println(<span class="hljs-string">&quot;OneServelt 从请求体得到参数 &quot;</span>+ username);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p> <strong>两个 Servlet</strong></p>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">OneServlet</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">HttpServlet</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title">doPost</span><span class="hljs-params">(HttpServletRequest request, HttpServletResponse response)</span> <span class="hljs-keyword">throws</span> ServletException, IOException </span>&#123;<br>        <span class="hljs-comment">// 直接从【请求对象】中取出请求参数</span><br>        String username = request.getParameter(<span class="hljs-string">&quot;username&quot;</span>);<br>        System.out.println(<span class="hljs-string">&quot;OneServelt 从请求体得到参数 &quot;</span>+ username);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
-   <figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs scala">public <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">TwoServlet</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">HttpServlet</span> </span>&#123;<br>    <span class="hljs-keyword">protected</span> void doPost(<span class="hljs-type">HttpServletRequest</span> request, <span class="hljs-type">HttpServletResponse</span> response) <span class="hljs-keyword">throws</span> <span class="hljs-type">ServletException</span>, <span class="hljs-type">IOException</span> &#123;<br>        <span class="hljs-comment">// 直接从【请求对象】中取出请求参数</span><br>        <span class="hljs-type">String</span> username = request.getParameter(<span class="hljs-string">&quot;username&quot;</span>);<br>        <span class="hljs-type">System</span>.out.println(<span class="hljs-string">&quot;TwoServelt 从请求体得到参数 &quot;</span>+ username);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+ <figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs scala">public <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">TwoServlet</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">HttpServlet</span> </span>&#123;<br>    <span class="hljs-keyword">protected</span> void doPost(<span class="hljs-type">HttpServletRequest</span> request, <span class="hljs-type">HttpServletResponse</span> response) <span class="hljs-keyword">throws</span> <span class="hljs-type">ServletException</span>, <span class="hljs-type">IOException</span> &#123;<br>        <span class="hljs-comment">// 直接从【请求对象】中取出请求参数</span><br>        <span class="hljs-type">String</span> username = request.getParameter(<span class="hljs-string">&quot;username&quot;</span>);<br>        <span class="hljs-type">System</span>.out.println(<span class="hljs-string">&quot;TwoServelt 从请求体得到参数 &quot;</span>+ username);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
-<p>   <strong>过滤器，对所有资源进行排查，将字符集设置为 utf-8</strong></p>
-   <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyFilter02</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">Filter</span> </span>&#123;<br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">doFilter</span><span class="hljs-params">(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain)</span> <span class="hljs-keyword">throws</span> IOException, ServletException </span>&#123;<br>        <span class="hljs-comment">// 通知拦截的请求对象，使用 UTF-8 字符集对当前请求体信息进行一次重新编辑</span><br>        servletRequest.setCharacterEncoding(<span class="hljs-string">&quot;utf-8&quot;</span>);<br>        <span class="hljs-comment">// 将【请求对象】和 【相应对象】重新交给 Tomcat</span><br>        filterChain.doFilter(servletRequest, servletResponse);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p> <strong>过滤器，对所有资源进行排查，将字符集设置为 utf-8</strong></p>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyFilter02</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">Filter</span> </span>&#123;<br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">doFilter</span><span class="hljs-params">(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain)</span> <span class="hljs-keyword">throws</span> IOException, ServletException </span>&#123;<br>        <span class="hljs-comment">// 通知拦截的请求对象，使用 UTF-8 字符集对当前请求体信息进行一次重新编辑</span><br>        servletRequest.setCharacterEncoding(<span class="hljs-string">&quot;utf-8&quot;</span>);<br>        <span class="hljs-comment">// 将【请求对象】和 【相应对象】重新交给 Tomcat</span><br>        filterChain.doFilter(servletRequest, servletResponse);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
-<p>   <strong>将 Servlet 和 过滤器注册到 web.xml 文件中</strong></p>
-   <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">servlet</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">servlet-name</span>&gt;</span>OneServlet<span class="hljs-tag">&lt;/<span class="hljs-name">servlet-name</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">servlet-class</span>&gt;</span>cn.yechen.controller.OneServlet<span class="hljs-tag">&lt;/<span class="hljs-name">servlet-class</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">servlet</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">servlet-mapping</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">servlet-name</span>&gt;</span>OneServlet<span class="hljs-tag">&lt;/<span class="hljs-name">servlet-name</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">url-pattern</span>&gt;</span>/one<span class="hljs-tag">&lt;/<span class="hljs-name">url-pattern</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">servlet-mapping</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">servlet</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">servlet-name</span>&gt;</span>TwoServlet<span class="hljs-tag">&lt;/<span class="hljs-name">servlet-name</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">servlet-class</span>&gt;</span>cn.yechen.controller.TwoServlet<span class="hljs-tag">&lt;/<span class="hljs-name">servlet-class</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">servlet</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">servlet-mapping</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">servlet-name</span>&gt;</span>TwoServlet<span class="hljs-tag">&lt;/<span class="hljs-name">servlet-name</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">url-pattern</span>&gt;</span>/two<span class="hljs-tag">&lt;/<span class="hljs-name">url-pattern</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">servlet-mapping</span>&gt;</span><br><span class="hljs-comment">&lt;!--将过滤器类文件路径交给 Tomcat--&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">filter</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">filter-name</span>&gt;</span>myFilter02<span class="hljs-tag">&lt;/<span class="hljs-name">filter-name</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">filter-class</span>&gt;</span>cn.yechen.fliter.MyFilter02<span class="hljs-tag">&lt;/<span class="hljs-name">filter-class</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">filter</span>&gt;</span><br><span class="hljs-comment">&lt;!--通知 tomcat 在调用所有资源文件之前都需要调用 MyFilter02 进行拦截--&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">filter-mapping</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">filter-name</span>&gt;</span>myFilter02<span class="hljs-tag">&lt;/<span class="hljs-name">filter-name</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">url-pattern</span>&gt;</span>/*<span class="hljs-tag">&lt;/<span class="hljs-name">url-pattern</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">filter-mapping</span>&gt;</span><br></code></pre></td></tr></table></figure>
-
+<p> <strong>将 Servlet 和 过滤器注册到 web.xml 文件中</strong></p>
+ <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">servlet</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">servlet-name</span>&gt;</span>OneServlet<span class="hljs-tag">&lt;/<span class="hljs-name">servlet-name</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">servlet-class</span>&gt;</span>cn.yechen.controller.OneServlet<span class="hljs-tag">&lt;/<span class="hljs-name">servlet-class</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">servlet</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">servlet-mapping</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">servlet-name</span>&gt;</span>OneServlet<span class="hljs-tag">&lt;/<span class="hljs-name">servlet-name</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">url-pattern</span>&gt;</span>/one<span class="hljs-tag">&lt;/<span class="hljs-name">url-pattern</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">servlet-mapping</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">servlet</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">servlet-name</span>&gt;</span>TwoServlet<span class="hljs-tag">&lt;/<span class="hljs-name">servlet-name</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">servlet-class</span>&gt;</span>cn.yechen.controller.TwoServlet<span class="hljs-tag">&lt;/<span class="hljs-name">servlet-class</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">servlet</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">servlet-mapping</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">servlet-name</span>&gt;</span>TwoServlet<span class="hljs-tag">&lt;/<span class="hljs-name">servlet-name</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">url-pattern</span>&gt;</span>/two<span class="hljs-tag">&lt;/<span class="hljs-name">url-pattern</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">servlet-mapping</span>&gt;</span><br><span class="hljs-comment">&lt;!--将过滤器类文件路径交给 Tomcat--&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">filter</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">filter-name</span>&gt;</span>myFilter02<span class="hljs-tag">&lt;/<span class="hljs-name">filter-name</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">filter-class</span>&gt;</span>cn.yechen.fliter.MyFilter02<span class="hljs-tag">&lt;/<span class="hljs-name">filter-class</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">filter</span>&gt;</span><br><span class="hljs-comment">&lt;!--通知 tomcat 在调用所有资源文件之前都需要调用 MyFilter02 进行拦截--&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">filter-mapping</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">filter-name</span>&gt;</span>myFilter02<span class="hljs-tag">&lt;/<span class="hljs-name">filter-name</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">url-pattern</span>&gt;</span>/*<span class="hljs-tag">&lt;/<span class="hljs-name">url-pattern</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">filter-mapping</span>&gt;</span><br></code></pre></td></tr></table></figure></li>
+</ul>
 <p><img src="https://cdn.jsdelivr.net/gh/yechen-ops/image-hosting@master/20210424/image-20210313221847093.2n0k1upx3v80.png" srcset="/img/loading.gif" lazyload alt="image-20210313221847093"></p>
 <ol start="3">
 <li><p><strong>Filter接口实现类开发步骤：（三步）</strong>  </p>
@@ -867,22 +857,22 @@
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">filter</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">filter-name</span>&gt;</span>过滤器对象名称<span class="hljs-tag">&lt;/<span class="hljs-name">filter-name</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">filter-class</span>&gt;</span>过滤器完整类名<span class="hljs-tag">&lt;/<span class="hljs-name">filter-class</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">filter</span>&gt;</span><br><span class="hljs-comment">&lt;!--拦截地址通知Tomcat在调用何种资源文件之前需要调用OneFilter过滤进行拦截--&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">filter-mapping</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">filter-name</span>&gt;</span>过滤器对象名称<span class="hljs-tag">&lt;/<span class="hljs-name">filter-name</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">url-pattern</span>&gt;</span>/拦截地址<span class="hljs-tag">&lt;/<span class="hljs-name">url-pattern</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">filter-mapping</span>&gt;</span><br></code></pre></td></tr></table></figure>
 
 <ul>
-<li>要求 Tomcat 在调用==某一个具体文件==之前，来调用 过滤器 拦截：</li>
+<li>要求 Tomcat 在<strong>调用某一个具体文件</strong>之前，来调用 过滤器 拦截：</li>
 </ul>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">url-pattern</span>&gt;</span>拦截的文件的具体地址<span class="hljs-tag">&lt;/<span class="hljs-name">url-pattern</span>&gt;</span><br></code></pre></td></tr></table></figure>
 
 <ul>
-<li>要求Tomcat在调用==某一个文件夹下所有的资源文件==之前，来调用 过滤器 拦截：</li>
+<li>要求Tomcat在<strong>调用某一个文件夹下所有的资源文件</strong>之前，来调用 过滤器 拦截：</li>
 </ul>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">url-pattern</span>&gt;</span>/文件夹/*<span class="hljs-tag">&lt;/<span class="hljs-name">url-pattern</span>&gt;</span><br></code></pre></td></tr></table></figure>
 
 <ul>
-<li>要求 Tomcat 在调用==任意文件夹下某种类型文件==之前，来调用 过滤器 拦截：</li>
+<li>要求 Tomcat 在<strong>调用任意文件夹下某种类型文件</strong>之前，来调用 过滤器 拦截：</li>
 </ul>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">url-pattern</span>&gt;</span>*.jpg<span class="hljs-tag">&lt;/<span class="hljs-name">url-pattern</span>&gt;</span><br></code></pre></td></tr></table></figure>
 
 <ul>
-<li>要求 Tomcat 在调用==网站中任意文件==时，来调用 过滤器 拦截：</li>
+<li>要求 Tomcat 在<strong>调用网站中任意文件</strong>时，来调用 过滤器 拦截：</li>
 </ul>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">url-pattern</span>&gt;</span>/*<span class="hljs-tag">&lt;/<span class="hljs-name">url-pattern</span>&gt;</span><br></code></pre></td></tr></table></figure></li>
 </ol>
